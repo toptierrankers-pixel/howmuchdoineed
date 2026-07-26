@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://howmuchdoineed.com/sitemap.xml
+Sitemap: https://howmuchdoineed.toptierrankers.workers.dev/sitemap.xml
