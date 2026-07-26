@@ -1,0 +1,241 @@
+/* ============================================================
+   HowMuchDoINeed - shared styles for all material calculators
+   Palette: concrete paper, graphite ink, blueprint blue, safety amber
+   ============================================================ */
+
+:root {
+  --paper:      #E7E7E1;
+  --card:       #FCFCFA;
+  --ink:        #1A1D1F;
+  --muted:      #6A6C69;
+  --hair:       #D3D2CB;
+  --blue:       #1F5673;   /* blueprint ink - links, headings accent */
+  --blue-soft:  #2E6E90;
+  --amber:      #E39A0C;   /* safety amber - result + primary action */
+  --amber-deep: #C4820A;
+  --grid:       rgba(31,86,115,.07);
+  --shadow:     0 1px 0 var(--hair), 0 12px 30px -18px rgba(26,29,31,.35);
+
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --disp: "Space Grotesk", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+.wrap { width: 100%; max-width: 940px; margin: 0 auto; padding: 0 20px; }
+
+a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--blue-soft); }
+
+/* ---------- top bar ---------- */
+.topbar {
+  border-bottom: 1px solid var(--hair);
+  background: var(--paper);
+  position: sticky; top: 0; z-index: 20;
+}
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; gap: 20px; }
+.brand {
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 9px;
+}
+.brand .brandmark { flex: none; display: block; }
+.topbar nav { display: flex; gap: 20px; font-size: 15px; }
+.topbar nav a { color: var(--muted); text-decoration: none; }
+.topbar nav a:hover { color: var(--ink); }
+@media (max-width: 620px){ .topbar nav { display: none; } }
+
+/* ---------- page head ---------- */
+.pagehead { padding: 44px 0 8px; }
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--blue); margin: 0 0 12px;
+}
+h1 {
+  font-family: var(--disp);
+  font-weight: 700; font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.05; letter-spacing: -.02em; margin: 0 0 12px;
+}
+.lede { font-size: 18px; color: var(--muted); max-width: 62ch; margin: 0; }
+
+/* ---------- calculator card ---------- */
+.calc {
+  margin: 30px 0 12px;
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.calc-grid { display: grid; grid-template-columns: 1fr 300px; }
+@media (max-width: 720px){ .calc-grid { grid-template-columns: 1fr; } }
+
+.calc-inputs {
+  padding: 26px 26px 28px;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: -1px -1px;
+}
+.calc-inputs h2 {
+  font-family: var(--disp); font-size: 15px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+  margin: 0 0 18px;
+}
+.field { margin-bottom: 16px; }
+.field label {
+  display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; color: var(--ink);
+}
+.inputline { display: flex; align-items: stretch; }
+.inputline input {
+  flex: 1; min-width: 0;
+  font-family: var(--mono); font-size: 16px;
+  padding: 11px 12px;
+  border: 1px solid var(--hair); border-right: none;
+  border-radius: 8px 0 0 8px;
+  background: #fff; color: var(--ink);
+}
+.inputline input:focus { outline: 2px solid var(--blue); outline-offset: -1px; z-index: 1; }
+.inputline .unit {
+  display: inline-flex; align-items: center; padding: 0 12px;
+  font-family: var(--mono); font-size: 13px; color: var(--muted);
+  background: #F1F0EB; border: 1px solid var(--hair);
+  border-radius: 0 8px 8px 0;
+  min-width: 58px; justify-content: center;
+}
+.field.select .inputline select {
+  flex: 1; font-family: var(--mono); font-size: 15px; padding: 11px 12px;
+  border: 1px solid var(--hair); border-radius: 8px; background: #fff; color: var(--ink);
+}
+
+/* result rail */
+.calc-result {
+  padding: 26px 24px;
+  background: #16181A;
+  color: #fff;
+  display: flex; flex-direction: column; gap: 4px;
+  border-left: 4px solid var(--amber);
+}
+.calc-result .rlabel {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .12em;
+  text-transform: uppercase; color: #9EA2A0;
+}
+.calc-result .rvalue {
+  font-family: var(--mono); font-weight: 600;
+  font-size: 40px; line-height: 1.05; color: var(--amber);
+  letter-spacing: -.01em; margin: 2px 0 2px;
+}
+.calc-result .rvalue small { font-size: 16px; color: #fff; font-weight: 400; }
+.calc-result .rbreak {
+  margin-top: 16px; padding-top: 16px; border-top: 1px solid #2C2F31;
+  display: flex; flex-direction: column; gap: 9px;
+}
+.rbreak .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.rbreak .row span:first-child { font-size: 13.5px; color: #B7BAB8; }
+.rbreak .row span:last-child { font-family: var(--mono); font-size: 15px; color: #fff; }
+.calc-result .rnote { margin-top: 16px; font-size: 12.5px; color: #8C908E; line-height: 1.5; }
+
+/* ---------- prose sections ---------- */
+section.block { padding: 34px 0; border-top: 1px solid var(--hair); }
+section.block:first-of-type { border-top: none; }
+h2.blocktitle {
+  font-family: var(--disp); font-weight: 700; font-size: 24px;
+  letter-spacing: -.01em; margin: 0 0 14px;
+}
+h2.blocktitle .n {
+  font-family: var(--mono); font-size: 14px; color: var(--amber-deep);
+  margin-right: 10px; font-weight: 500;
+}
+.block p { margin: 0 0 14px; }
+.block p:last-child { margin-bottom: 0; }
+
+.formula {
+  font-family: var(--mono); font-size: 15px;
+  background: var(--card); border: 1px solid var(--hair);
+  border-left: 3px solid var(--blue);
+  padding: 14px 16px; border-radius: 8px; margin: 4px 0 18px;
+  overflow-x: auto; line-height: 1.7;
+}
+.example {
+  background: var(--card); border: 1px solid var(--hair); border-radius: 10px;
+  padding: 20px 22px;
+}
+.example h3 { font-family: var(--disp); font-size: 16px; margin: 0 0 10px; }
+.example ol { margin: 0; padding-left: 20px; }
+.example li { margin-bottom: 6px; }
+.example .answer {
+  margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--hair);
+  font-family: var(--mono); font-size: 15px; color: var(--blue);
+}
+
+/* table */
+table.ref { width: 100%; border-collapse: collapse; font-size: 15px; }
+table.ref th, table.ref td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--hair); }
+table.ref th {
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); font-weight: 500;
+}
+table.ref td:not(:first-child) { font-family: var(--mono); }
+table.ref tr:last-child td { border-bottom: none; }
+
+/* faq */
+.faq details {
+  border: 1px solid var(--hair); border-radius: 10px; background: var(--card);
+  padding: 4px 18px; margin-bottom: 10px;
+}
+.faq summary {
+  cursor: pointer; padding: 13px 0; font-weight: 600; font-family: var(--disp);
+  font-size: 16px; list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; float: right; color: var(--amber-deep); font-family: var(--mono); }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details[open] summary { border-bottom: 1px solid var(--hair); margin-bottom: 12px; }
+.faq details p { margin: 0 0 13px; color: var(--muted); }
+
+/* ---------- other calculators grid ---------- */
+.tools { padding: 34px 0 10px; border-top: 1px solid var(--hair); }
+.toolgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.tool {
+  display: block; padding: 16px 18px; background: var(--card);
+  border: 1px solid var(--hair); border-radius: 10px; text-decoration: none; color: var(--ink);
+  transition: border-color .15s, transform .15s;
+}
+.tool:hover { border-color: var(--blue); transform: translateY(-2px); }
+.tool .tname { font-family: var(--disp); font-weight: 600; font-size: 16px; }
+.tool .tdesc { font-size: 13.5px; color: var(--muted); margin-top: 3px; }
+
+/* ---------- footer ---------- */
+footer.site { border-top: 1px solid var(--hair); margin-top: 30px; padding: 28px 0 44px; }
+footer.site .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+footer.site .fnote { font-size: 13.5px; color: var(--muted); max-width: 48ch; }
+footer.site nav { display: flex; flex-wrap: wrap; gap: 14px; font-size: 14px; }
+footer.site nav a { color: var(--muted); text-decoration: none; }
+footer.site nav a:hover { color: var(--ink); }
+
+/* home hero */
+.home-hero { padding: 56px 0 14px; }
+.home-hero h1 { font-size: clamp(34px, 6vw, 56px); max-width: 15ch; }
+.home-hero .lede { font-size: 20px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
