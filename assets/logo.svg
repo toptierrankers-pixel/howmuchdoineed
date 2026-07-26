@@ -1,16 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372 80" width="372" height="80" role="img" aria-label="HowMuchDoINeed">
-  <!-- mark -->
-  <g transform="translate(4,8)">
-    <rect x="4" y="4" width="56" height="56" rx="13" fill="#E39A0C"/>
-    <g fill="#16181A">
-      <rect x="13" y="38" width="7" height="12" rx="1.5"/>
-      <rect x="24" y="30" width="7" height="20" rx="1.5"/>
-      <rect x="35" y="22" width="7" height="28" rx="1.5"/>
-      <rect x="46" y="14" width="7" height="36" rx="1.5"/>
-    </g>
+  <g transform="translate(8,8)">
+    <rect x="0" y="0" width="64" height="64" rx="15" fill="#16181A"/>
+    <polygon points="32,14 50,24 32,34 14,24" fill="#F6C463"/>
+    <polygon points="14,24 32,34 32,50 14,40" fill="#E39A0C"/>
+    <polygon points="50,24 50,40 32,50 32,34" fill="#A86E05"/>
   </g>
-  <!-- wordmark -->
-  <text x="82" y="51"
+  <text x="88" y="51"
         font-family="'Space Grotesk', 'Segoe UI', Arial, sans-serif"
         font-size="34" font-weight="700" letter-spacing="-0.6"
         fill="#16181A">How<tspan fill="#1F5673">Much</tspan>Do<tspan fill="#1F5673">I</tspan>Need</text>
