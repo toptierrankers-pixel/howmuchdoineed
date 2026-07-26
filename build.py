@@ -10,7 +10,8 @@ import json, html
 # ---- change this to your real domain (no trailing slash) ----
 BASE = "https://howmuchdoineed.com"
 SITE = "HowMuchDoINeed"
-FAVV = "2"   # favicon cache-buster; bump when the icon changes
+FAVV = "3"
+BUILD = "2026-07-26 v3 - 10 calculators + SEO"   # favicon cache-buster; bump when the icon changes
 
 MARK = ('<svg class="brandmark" viewBox="0 0 64 64" width="24" height="24" aria-hidden="true">'
     '<rect x="4" y="4" width="56" height="56" rx="13" fill="#16181A"/>'
@@ -352,7 +353,8 @@ def others_grid(current):
     return "\n      ".join(cards)
 
 def head_common(title, desc, canonical, og_extra=""):
-    return f'''<meta charset="UTF-8">
+    return f'''<!-- {SITE} build: {BUILD} -->
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)} | {SITE}</title>
 <meta name="description" content="{esc(desc)}">
