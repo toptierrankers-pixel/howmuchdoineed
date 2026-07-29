@@ -239,3 +239,18 @@ footer.site nav a:hover { color: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+
+/* ---------- cost-guide callouts ---------- */
+.callout { background: var(--card); border: 1px solid var(--hair); border-left: 3px solid var(--amber);
+  border-radius: 10px; padding: 16px 18px; margin: 0 0 22px; display: flex; flex-wrap: wrap;
+  align-items: center; gap: 14px; justify-content: space-between; }
+.callout .ctext { font-size: 15px; flex: 1 1 260px; }
+.callout .ctext strong { font-family: var(--disp); }
+.btn { display: inline-block; background: var(--amber); color: #16181A; font-family: var(--disp);
+  font-weight: 600; font-size: 14.5px; padding: 10px 18px; border-radius: 8px; text-decoration: none; white-space: nowrap; }
+.btn:hover { background: var(--amber-deep); color: #16181A; }
+.glance { background: #16181A; color: #fff; border-radius: 12px; padding: 22px 24px; margin: 22px 0 14px; }
+.glance .glabel { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #9EA2A0; margin-bottom: 8px; }
+.glance .grange { font-family: var(--mono); font-size: 34px; font-weight: 600; color: var(--amber); line-height: 1.05; letter-spacing: -.01em; }
+.glance p { margin: 10px 0 0; color: #B7BAB8; font-size: 14px; line-height: 1.55; }

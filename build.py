@@ -11,7 +11,7 @@ import json, html
 BASE = "https://howmuchdoineed.toptierrankers.workers.dev"
 SITE = "HowMuchDoINeed"
 FAVV = "3"
-BUILD = "2026-07-26 v6 - 25 calculators"
+BUILD = "2026-07-26 v7 - 25 calculators + guides"
 
 ANALYTICS_TOKEN = ""  # paste your Cloudflare Web Analytics token here, then rebuild, to enable
 
@@ -757,6 +757,7 @@ TOPBAR = f'''<header class="topbar">
       <a href="gravel.html">Aggregates</a>
       <a href="concrete.html">Concrete</a>
       <a href="paint.html">Paint</a>
+      <a href="index.html#guides">Guides</a>
       <a href="index.html">All tools</a>
     </nav>
   </div>
@@ -813,6 +814,8 @@ def calc_page(c):
       <aside class="calc-result" id="calc-result"></aside>
     </div>
   </div>
+
+  {guide_link(c)}
 
   <section class="block">
     <h2 class="blocktitle"><span class="n">01</span>How to calculate {esc(c["name"].lower())}</h2>
@@ -921,7 +924,7 @@ def index_page():
   <section class="tools" style="border-top:none;">{groups_html}
   </section>
 
-  <section class="block" style="margin-top:20px;">
+{guides_section()}  <section class="block" style="margin-top:20px;">
     <h2 class="blocktitle">Why {SITE}</h2>
     <p>Every calculator here does one thing and does it fast: enter your measurements, read the answer. No accounts, no walls of ads over the tool, no guessing at the math. Each one also shows the formula and a worked example, so you can check the number yourself or run it by hand on site.</p>
     <p>Estimates include a waste factor because real jobs are not tidy: ground is not level, material settles, and some is always lost in handling. The goal is a number you can order from with confidence. Always confirm density and coverage with your supplier for the exact product you are buying.</p>
@@ -936,7 +939,7 @@ def index_page():
 '''
 
 def sitemap():
-    urls = [f"{BASE}/"] + [f"{BASE}/{c['slug']}.html" for c in CALCS]
+    urls = [f"{BASE}/"] + [f"{BASE}/{c['slug']}.html" for c in CALCS] + [f"{BASE}/{g['slug']}.html" for g in GUIDES]
     items = "\n".join(
         f"  <url><loc>{u}</loc><changefreq>monthly</changefreq><priority>{'1.0' if u.endswith('/') else '0.8'}</priority></url>"
         for u in urls)
@@ -950,10 +953,234 @@ def robots():
     return f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n"
 
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Cost guides (article-style pages that link into the calculators)
+# ---------------------------------------------------------------------------
+GUIDES = [
+ {
+  "slug":"gravel-driveway-cost","calc_slug":"gravel","calc_name":"Gravel",
+  "eyebrow":"Cost guide \u00b7 Aggregates",
+  "name":"Gravel Driveway Cost","griddesc":"What a gravel driveway costs",
+  "title":"Gravel Driveway Cost: What You Will Pay",
+  "desc":"What does a gravel driveway cost? A clear breakdown of gravel prices per ton, delivery, installation per square foot, and how to estimate your own driveway.",
+  "h1":"How Much Does a Gravel Driveway Cost?",
+  "lede":"Gravel is the cheapest way to surface a driveway. Here is what the material, delivery, and installation typically run, plus how to estimate the tonnage for your own driveway.",
+  "glance_label":"Typical installed driveway",
+  "glance_range":"$1,200 to $4,500",
+  "glance_note":"Roughly $1 to $3 per square foot installed. A flat, do-it-yourself job can cost far less, since you pay only for material and delivery.",
+  "intro":["A gravel driveway is priced two ways: the loose material by the ton or cubic yard, and the finished job by the square foot once delivery, base preparation, and labor are included.",
+           "As a rough guide, expect about 1 to 3 dollars per square foot for a professionally installed gravel driveway over a prepared base. A basic material-only refresh that you spread yourself costs a fraction of that."],
+  "breakdown_intro":"The main cost pieces for a gravel driveway:",
+  "breakdown_table":[["Item","Typical range","Notes"],
+    ["Gravel material","$15 to $75 per ton","Crushed stone low, decorative and pea gravel higher"],
+    ["Delivery","$50 to $150 per load","Depends on distance and truck size"],
+    ["Base / sub-base stone","$15 to $40 per ton","Larger stone under the top layer"],
+    ["Grading and prep","$1 to $2 per sq ft","Excavation, leveling, fabric"],
+    ["Installed, all-in (pro)","$1 to $3 per sq ft","Material, base, labor"],
+    ["DIY, material only","40 to 60% less","You supply the labor"]],
+  "factors":["Size is the biggest driver. A long or double-wide driveway needs more tons, and cost scales almost directly with area and depth.",
+             "Gravel type matters. Plain crushed stone and crusher run are cheapest; decorative river rock, pea gravel, and colored stone cost more per ton.",
+             "Depth and layers add up. A durable driveway is built in layers, a coarse base topped with a finer surface, so it needs more material than a single thin layer.",
+             "Site prep can dominate a quote. Excavation, hauling away old material, grading for drainage, and landscape fabric all add labor and cost.",
+             "Delivery distance and region shift the total. Rural sites far from a quarry pay more for hauling, and prices vary widely by area."],
+  "diy_title":"DIY or hire a pro?",
+  "diy":["A gravel top-up on a flat, stable driveway is a reasonable do-it-yourself job. You order the tonnage, have it delivered, and spread and rake it. Your main cost is material and delivery.",
+         "Hire a pro when the driveway is new, needs excavation, has drainage problems, or sits on a slope. Proper grading and a compacted base are what keep gravel from washing out and rutting, and that is worth paying for on a full build."],
+  "faqs":[["How much does a gravel driveway cost?","Roughly 1 to 3 dollars per square foot installed by a contractor. A material-only DIY refresh costs much less, since you pay only for the gravel and delivery."],
+          ["Is a gravel driveway cheaper than concrete or asphalt?","Yes, by a wide margin. Gravel is the least expensive driveway surface up front, though it needs occasional top-ups that concrete and asphalt do not."],
+          ["How much gravel do I need for a driveway?","Multiply length by width by depth to get the volume, then convert to tons. Plan on 4 to 6 inches of depth for a driveway. The gravel calculator does this for you."],
+          ["How long does a gravel driveway last?","Many years with light upkeep. Expect to add a fresh top layer every few years and to regrade occasionally to fill ruts and keep drainage working."]],
+ },
+ {
+  "slug":"concrete-slab-cost","calc_slug":"concrete","calc_name":"Concrete",
+  "eyebrow":"Cost guide \u00b7 Concrete",
+  "name":"Concrete Slab Cost","griddesc":"What a concrete slab costs",
+  "title":"Concrete Slab Cost: Per Square Foot and Per Yard",
+  "desc":"What does a concrete slab cost? Prices per square foot installed, per cubic yard of ready-mix, DIY versus pro, and how to estimate the concrete for your slab.",
+  "h1":"How Much Does a Concrete Slab Cost?",
+  "lede":"Concrete slab cost comes down to size, thickness, and finish. Here is what ready-mix costs per yard, what a finished slab runs per square foot, and how to estimate your own pour.",
+  "glance_label":"Installed concrete slab",
+  "glance_range":"$4 to $8 per sq ft",
+  "glance_note":"Basic broom-finish slabs sit in this range. Reinforcement, decorative finishes, and small pours push it higher. Ready-mix alone is about $120 to $180 per cubic yard.",
+  "intro":["A concrete slab is priced by the square foot once you include material, forming, reinforcement, labor, and finishing. The concrete itself is sold by the cubic yard as ready-mix, or by the bag for small pours.",
+           "A basic broom-finished slab commonly runs 4 to 8 dollars per square foot installed. Decorative finishes and heavy reinforcement can push that well above 10."],
+  "breakdown_intro":"The main cost pieces for a concrete slab:",
+  "breakdown_table":[["Item","Typical range","Notes"],
+    ["Ready-mix concrete","$120 to $180 per yd\u00b3","Delivered, before labor"],
+    ["Installed slab (basic)","$4 to $8 per sq ft","Broom finish, standard thickness"],
+    ["Installed slab (finished)","$8 to $12+ per sq ft","Stamped, colored, or polished"],
+    ["80 lb bag (DIY)","$5 to $8 per bag","Small pads and posts only"],
+    ["Reinforcement","$0.50 to $1.50 per sq ft","Wire mesh, rebar, or fiber"],
+    ["Pump truck","$150 to $250","Only if the mixer cannot reach"]],
+  "factors":["Thickness sets the volume. A 4 inch slab is standard for patios and floors; driveways and load-bearing slabs go to 5 or 6 inches and use proportionally more concrete.",
+             "Square footage changes the per-foot price. Small slabs cost more per square foot because setup, delivery, and minimum charges spread over less area.",
+             "Finish is a big lever. A plain broom finish is cheapest. Stamped, stained, exposed-aggregate, and polished finishes add labor and material.",
+             "Reinforcement and prep add up. Wire mesh, rebar, a gravel sub-base, and forming all add to a bare pour, and they are what make a slab last.",
+             "Access and region matter. If a mixer cannot reach the site you may need a pump, and local labor and material rates vary widely."],
+  "diy_title":"DIY or hire a pro?",
+  "diy":["Bagged concrete is fine for a small pad, footing, or setting posts. Once you are past roughly half a cubic yard, bags stop making sense and ready-mix is cheaper and faster.",
+         "Pouring and finishing a large slab is demanding work with a short time window before the concrete sets. Forming, screeding, and finishing a smooth, flat slab takes skill, so most people hire a pro for anything sizable or visible."],
+  "faqs":[["How much does a concrete slab cost?","Most basic slabs run 4 to 8 dollars per square foot installed. Decorative finishes and reinforcement push the price higher."],
+          ["How much does a yard of concrete cost?","Ready-mix concrete is roughly 120 to 180 dollars per cubic yard delivered, before forming, labor, and finishing."],
+          ["Is it cheaper to pour concrete yourself?","The material alone is much cheaper than a full installed price, but slabs are labor-intensive and time-sensitive. DIY saves money only if you have the skill and help."],
+          ["How much concrete do I need?","Multiply length by width by thickness to get the volume in cubic yards. The concrete calculator also gives you the number of 60 and 80 pound bags."]],
+ },
+ {
+  "slug":"sod-cost","calc_slug":"sod","calc_name":"Sod",
+  "eyebrow":"Cost guide \u00b7 Lawn",
+  "name":"Sod Cost","griddesc":"What sod costs to buy and install",
+  "title":"Sod Cost: Per Square Foot and Per Pallet",
+  "desc":"What does sod cost? Prices per square foot and per pallet, installation cost, sod versus seed, and how to estimate how much sod your lawn needs.",
+  "h1":"How Much Does Sod Cost?",
+  "lede":"Sod gives an instant lawn, at a higher price than seed. Here is what sod costs per square foot and per pallet, what installation adds, and how to estimate your lawn.",
+  "glance_label":"Installed sod lawn",
+  "glance_range":"$0.90 to $2.00 per sq ft",
+  "glance_note":"The sod itself is about $0.30 to $0.80 per square foot. The rest is soil prep, delivery, and labor. A pallet covers roughly 450 square feet.",
+  "intro":["Sod is priced by the square foot or by the pallet for the grass itself, plus soil preparation and labor if a crew installs it. A pallet typically covers about 450 square feet.",
+           "Laid by a pro over prepared soil, sod commonly runs about 0.90 to 2.00 dollars per square foot all-in. Buying and laying it yourself costs much less, since labor is the largest part."],
+  "breakdown_intro":"The main cost pieces for a sod lawn:",
+  "breakdown_table":[["Item","Typical range","Notes"],
+    ["Sod material","$0.30 to $0.80 per sq ft","Varies by grass type and region"],
+    ["Per pallet","$150 to $450","Covers about 450 sq ft"],
+    ["Soil prep and grading","$0.50 to $1.00 per sq ft","Tilling, leveling, amendments"],
+    ["Installation labor","$0.30 to $0.90 per sq ft","Laying and rolling"],
+    ["Old lawn removal","adds to the total","If replacing existing grass"],
+    ["Delivery","$50 to $150","Per load, by distance"]],
+  "factors":["Lawn size drives the pallet count and the labor. Larger lawns cost more overall but often a little less per square foot.",
+             "Grass type changes the material price. Common cool-season and warm-season grasses are affordable; specialty or drought-tolerant varieties cost more.",
+             "Site prep is a real cost. Removing an old lawn, tilling, grading, and adding topsoil all add labor before a single roll goes down.",
+             "Slope and access affect labor. Steep or hard-to-reach yards take longer to prepare and lay.",
+             "Season and region matter. Sod is cheapest and establishes best in the growing season, and prices vary by local farm supply."],
+  "diy_title":"DIY or hire a pro?",
+  "diy":["Laying sod yourself is achievable on a small, already-level yard. You prepare the soil, order pallets, and lay and roll the sod, paying mainly for material and delivery.",
+         "Hire a pro for large lawns, heavy grading, or old-lawn removal. Even coverage and good soil contact are what let sod root, and a crew with the right tools gets that done fast before the sod dries out."],
+  "faqs":[["How much does sod cost per square foot?","The sod itself is about 0.30 to 0.80 dollars per square foot. Installed over prepared soil, expect roughly 0.90 to 2.00 dollars per square foot."],
+          ["How much does a pallet of sod cost?","Usually 150 to 450 dollars, and a pallet covers around 450 square feet, though coverage varies by farm."],
+          ["Is sod cheaper than seed?","No. Seed costs far less up front. Sod costs more but gives an instant, established lawn with less risk of washout and weeds."],
+          ["How much sod do I need?","Multiply your lawn length by width for the area, then divide by the pallet coverage. The sod calculator gives pallets and rolls with a cutting allowance."]],
+ },
+]
+
+GUIDE_FOR = {g["calc_slug"]: g for g in GUIDES}
+
+def guide_link(c):
+    g = GUIDE_FOR.get(c["slug"])
+    if not g:
+        return ""
+    return ('<div class="callout"><div class="ctext"><strong>Planning a budget?</strong> '
+            'See our ' + esc(g["name"]) + ' guide for price ranges and what drives the cost.</div>'
+            '<a class="btn" href="' + g["slug"] + '.html">Read the ' + esc(g["name"]) + ' guide</a></div>')
+
+def guides_section():
+    if not GUIDES:
+        return ""
+    cards = "\n      ".join('<a class="tool" href="%s.html"><div class="tname">%s</div><div class="tdesc">%s</div></a>'
+                            % (g["slug"], esc(g["name"]), esc(g["griddesc"])) for g in GUIDES)
+    return ('  <section class="tools" id="guides">\n'
+            '    <h2 class="blocktitle">Cost guides</h2>\n'
+            '    <div class="toolgrid">\n      ' + cards + '\n    </div>\n  </section>\n\n')
+
+def guide_page(g):
+    canonical = f"{BASE}/{g['slug']}.html"
+    calc_url = g["calc_slug"] + ".html"
+    faq_ld = {"@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in g["faqs"]]}
+    art_ld = {"@context":"https://schema.org","@type":"Article","headline":g["title"],
+      "description":g["desc"],"author":{"@type":"Organization","name":SITE},
+      "publisher":{"@type":"Organization","name":SITE},"mainEntityOfPage":canonical}
+    ld = ('\n<script type="application/ld+json">%s</script>\n<script type="application/ld+json">%s</script>'
+          % (json.dumps(art_ld), json.dumps(faq_ld)))
+    intro   = "\n    ".join("<p>%s</p>" % esc(p) for p in g["intro"])
+    factors = "\n    ".join("<p>%s</p>" % esc(p) for p in g["factors"])
+    diy     = "\n    ".join("<p>%s</p>" % esc(p) for p in g["diy"])
+    thead = "".join("<th>%s</th>" % esc(h) for h in g["breakdown_table"][0])
+    trows = "\n        ".join("<tr>%s</tr>" % "".join("<td>%s</td>" % esc(x) for x in row) for row in g["breakdown_table"][1:])
+    faqs = "\n    ".join('<details><summary>%s</summary>\n      <p>%s</p></details>' % (esc(q), esc(a)) for q,a in g["faqs"])
+    cta = ('<div class="callout"><div class="ctext"><strong>Need your exact quantity?</strong> '
+           'Estimate the materials for your project with the ' + esc(g["calc_name"]) + ' calculator.</div>'
+           '<a class="btn" href="' + calc_url + '">Open the ' + esc(g["calc_name"]) + ' calculator</a></div>')
+    return f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+{head_common(g["title"], g["desc"], canonical)}{ld}
+</head>
+<body>
+
+{TOPBAR}
+
+<main class="wrap">
+
+  <div class="pagehead">
+    <p class="eyebrow">{esc(g["eyebrow"])}</p>
+    <h1>{esc(g["h1"])}</h1>
+    <p class="lede">{esc(g["lede"])}</p>
+  </div>
+
+  <div class="glance">
+    <div class="glabel">{esc(g["glance_label"])}</div>
+    <div class="grange">{esc(g["glance_range"])}</div>
+    <p>{esc(g["glance_note"])}</p>
+  </div>
+
+  <p style="font-size:13.5px;color:var(--muted);margin:-6px 0 20px;">Prices are ballpark ranges that vary by region, supplier, and season. Get local quotes before budgeting.</p>
+
+  {cta}
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">01</span>What it costs</h2>
+    {intro}
+  </section>
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">02</span>Cost breakdown</h2>
+    <p>{esc(g["breakdown_intro"])}</p>
+    <table class="ref">
+      <thead><tr>{thead}</tr></thead>
+      <tbody>
+        {trows}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">03</span>What affects the cost</h2>
+    {factors}
+  </section>
+
+  {cta}
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">04</span>{esc(g["diy_title"])}</h2>
+    {diy}
+  </section>
+
+  <section class="block faq">
+    <h2 class="blocktitle"><span class="n">05</span>Common questions</h2>
+    {faqs}
+  </section>
+
+  <section class="tools">
+    <h2 class="blocktitle">Related calculators</h2>
+    <div class="toolgrid">
+      {others_grid(g["calc_slug"])}
+    </div>
+  </section>
+
+</main>
+
+{footer()}
+
+</body>
+</html>
+'''
+
+
 if __name__ == "__main__":
     for c in CALCS:
         open(f"{c['slug']}.html","w",encoding="utf-8").write(calc_page(c))
+    for g in GUIDES:
+        open(f"{g['slug']}.html","w",encoding="utf-8").write(guide_page(g))
     open("index.html","w",encoding="utf-8").write(index_page())
     open("sitemap.xml","w",encoding="utf-8").write(sitemap())
     open("robots.txt","w",encoding="utf-8").write(robots())
-    print("built", len(CALCS), "calculators + index + sitemap + robots")
+    print("built", len(CALCS), "calculators +", len(GUIDES), "guides + index + sitemap + robots")
