@@ -11,7 +11,7 @@ import json, html
 BASE = "https://howmuchdoineed.toptierrankers.workers.dev"
 SITE = "HowMuchDoINeed"
 FAVV = "3"
-BUILD = "2026-07-26 v3 - 10 calculators + SEO"   # favicon cache-buster; bump when the icon changes
+BUILD = "2026-07-26 v4 - 15 calculators + cost"   # favicon cache-buster; bump when the icon changes
 
 MARK = ('<svg class="brandmark" viewBox="0 0 64 64" width="24" height="24" aria-hidden="true">'
     '<rect x="4" y="4" width="56" height="56" rx="13" fill="#16181A"/>'
@@ -324,9 +324,136 @@ return{label:"Paint to buy",value:H.fmt(buy,0),unit:buy===1?"gallon":"gallons",l
   "compute":"""var f=1+v.waste/100;var sh=H.ceil(v.area*f/v.sheet);var scr=sh*32,box=H.ceil(sh/12);
 return{label:"Drywall sheets",value:H.fmt(sh,0),unit:(v.sheet==32?"4\\u00D78 sheets":"4\\u00D712 sheets"),lines:[{label:"Screws (approx)",value:H.fmt(scr,0)},{label:"Compound boxes",value:H.fmt(box,0)},{label:"Includes waste",value:v.waste+"%"}],note:"Screw and compound figures are rough planning estimates."};""",
  },
+ {
+  "slug":"flooring","cat":"Interior \u00b7 Finishing","name":"Flooring",
+  "grid":"Laminate, vinyl & wood by area",
+  "title":"Flooring Calculator: How Much Flooring Do I Need?",
+  "desc":"Free flooring calculator for laminate, vinyl plank, and hardwood. Enter room size and box coverage to get square footage and how many boxes to buy.",
+  "lede":"Estimate flooring for laminate, vinyl plank, or hardwood. Enter the room size and the coverage printed on the box to get square footage and boxes to buy, with cutting waste built in.",
+  "inputs_heading":"Room measurements",
+  "howto":["Flooring is sold by the box, each covering a set number of square feet. Multiply room length by width for the area, add a waste factor for cuts and mistakes, then divide by the box coverage.",
+           "Allow about 10% waste for straight layouts and up to 15% for diagonal or herringbone patterns and rooms with lots of corners."],
+  "formula":"area = length (ft) \u00d7 width (ft)\nboxes = area \u00d7 (1 + waste) \u00f7 coverage per box",
+  "ex_title":"A 12 ft \u00d7 14 ft room, 20 ft\u00b2 per box",
+  "ex_steps":["Area: 12 \u00d7 14 = <strong>168 ft\u00b2</strong>","Add 10% waste: 168 \u00d7 1.10 = <strong>185 ft\u00b2</strong>","Divide by box coverage: 185 \u00f7 20 = <strong>9.25</strong>","Round up: <strong>10 boxes</strong>"],
+  "ex_answer":"Buy 10 boxes to floor the room with cutting waste covered.",
+  "table_intro":"Typical waste allowances:",
+  "table":[["Layout","Waste","Note"],["Straight / plank","10%","Standard"],["Diagonal","15%","More cuts"],["Herringbone / chevron","15-20%","High offcut"],["Busy room, many corners","15%","Extra cuts"]],
+  "faqs":[["How much extra flooring should I buy?","Add about 10% for a standard straight layout, and 15% or more for diagonal and herringbone patterns. Keep a spare box for future repairs."],
+          ["How do I find my square footage?","Multiply the room length by its width. For L-shaped rooms, split into rectangles, find each area, and add them together."],
+          ["Why does the box coverage matter?","Boxes vary from about 18 to 24 square feet depending on the product. Always divide by the exact coverage on your box, not a guess."],
+          ["Should I buy all the flooring at once?","Yes, and check the batch or lot numbers match. Colors can shift slightly between production runs."]],
+  "fields":[["length","Length","ft",12,0.5],["width","Width","ft",14,0.5],["coverage","Coverage per box","ft\u00b2",20,1],["waste","Waste factor","%",10,1]],
+  "compute":"""var f=1+v.waste/100;var area=v.length*v.width*f;var boxes=H.ceil(area/v.coverage);
+return{label:"Flooring needed",value:H.fmt(area,0),unit:"sq ft",lines:[{label:"Boxes",value:H.fmt(boxes,0)},{label:"Coverage/box",value:v.coverage+" ft\u00b2"},{label:"Includes waste",value:v.waste+"%"}],note:"Buy a spare box for repairs and match lot numbers across boxes."};""",
+ },
+ {
+  "slug":"tile","cat":"Interior \u00b7 Finishing","name":"Tile",
+  "grid":"Floor & wall tile counts",
+  "title":"Tile Calculator: How Many Tiles Do I Need?",
+  "desc":"Free tile calculator. Enter the area and your tile size to get how many tiles you need for a floor or wall, with cutting waste included.",
+  "lede":"Work out how many tiles you need for a floor or wall. Enter the area and your tile size to get a tile count with cutting waste built in.",
+  "inputs_heading":"Area & tile size",
+  "howto":["Tile count is the area to cover divided by the area of one tile. Convert your tile dimensions from inches to feet, multiply for the tile area, then divide the wall or floor area by it.",
+           "Add about 10% for straight layouts and 15% for diagonal patterns, since cuts around edges and fixtures create waste. Keep spares for future repairs."],
+  "formula":"area = length (ft) \u00d7 width (ft)\ntile area = (tile L \u00f7 12) \u00d7 (tile W \u00f7 12)\ntiles = area \u00d7 (1 + waste) \u00f7 tile area",
+  "ex_title":"A 100 ft\u00b2 floor with 12 in \u00d7 12 in tiles",
+  "ex_steps":["Tile area: (12 \u00f7 12) \u00d7 (12 \u00f7 12) = <strong>1 ft\u00b2</strong>","Add 10% waste: 100 \u00d7 1.10 = <strong>110 ft\u00b2</strong>","Divide by tile area: 110 \u00f7 1 = <strong>110 tiles</strong>"],
+  "ex_answer":"Buy 110 tiles, plus a few spares for future repairs.",
+  "table_intro":"Common tile sizes and coverage:",
+  "table":[["Tile size","Area each","Tiles per 100 ft\u00b2"],["12 \u00d7 12 in","1.00 ft\u00b2","100"],["18 \u00d7 18 in","2.25 ft\u00b2","45"],["24 \u00d7 24 in","4.00 ft\u00b2","25"],["6 \u00d7 24 in plank","1.00 ft\u00b2","100"]],
+  "faqs":[["How many tiles do I need?","Divide the area to cover by the area of one tile, then add 10 to 15% for cuts and breakage. Round up to whole tiles."],
+          ["How much extra tile should I buy?","About 10% for straight layouts, 15% for diagonal. Buy a little more if the tile may be discontinued, so you have spares for repairs."],
+          ["How do I handle a wall with a door or window?","Calculate the full wall area, then subtract the opening area. For small openings many people skip this and let the waste factor absorb it."],
+          ["Do larger tiles waste more?","They can, because each cut removes a bigger piece. Large-format and diagonal layouts lean toward the higher end of the waste range."]],
+  "fields":[["length","Length","ft",10,0.5],["width","Width","ft",10,0.5],["tilel","Tile length","in",12,0.5],["tilew","Tile width","in",12,0.5],["waste","Waste factor","%",10,1]],
+  "compute":"""var f=1+v.waste/100;var area=v.length*v.width;var ta=(v.tilel/12)*(v.tilew/12);var tiles=ta>0?H.ceil(area*f/ta):0;
+return{label:"Tiles needed",value:H.fmt(tiles,0),unit:"tiles",lines:[{label:"Area",value:H.fmt(area,0)+" ft\u00b2"},{label:"Tile size",value:v.tilel+"\u00d7"+v.tilew+" in"},{label:"Includes waste",value:v.waste+"%"}],note:"Buy spare tiles for repairs; dye lots can vary between batches."};""",
+ },
+ {
+  "slug":"fence","cat":"Structural \u00b7 Exterior","name":"Fence",
+  "grid":"Posts, panels & concrete",
+  "title":"Fence Calculator: How Much Fencing Material?",
+  "desc":"Free fence calculator. Enter your fence length and post spacing to get the number of posts, panels, rails, and bags of concrete you need.",
+  "lede":"Plan the materials for a new fence run. Enter the total length and post spacing to get posts, panels, rails, and concrete bags.",
+  "inputs_heading":"Fence run",
+  "howto":["A fence run is divided into sections between posts. Divide the total length by the post spacing to get sections, then add one post, because a run of N sections needs N plus one posts.",
+           "Each section carries two or three rails, and each post is usually set in about two bags of concrete. Adjust rails per section to match your fence style."],
+  "formula":"sections = fence length \u00f7 post spacing (rounded up)\nposts = sections + 1\nrails = sections \u00d7 rails per section\nconcrete bags \u2248 posts \u00d7 2",
+  "ex_title":"A 96 ft fence, posts every 8 ft, 3 rails",
+  "ex_steps":["Sections: 96 \u00f7 8 = <strong>12 sections</strong>","Posts: 12 + 1 = <strong>13 posts</strong>","Rails: 12 \u00d7 3 = <strong>36 rails</strong>","Concrete: 13 \u00d7 2 = <strong>26 bags</strong>"],
+  "ex_answer":"You need 13 posts, 12 panels, 36 rails, and about 26 bags of concrete.",
+  "table_intro":"Common spacing and rails:",
+  "table":[["Fence type","Post spacing","Rails/section"],["Wood privacy","8 ft","3"],["Wood picket","6-8 ft","2-3"],["Chain link","10 ft","1 top rail"],["Vinyl panel","6-8 ft","per kit"]],
+  "faqs":[["How far apart should fence posts be?","Six to eight feet for most wood and vinyl fences, up to ten for chain link. Closer spacing is stronger and handles wind and slopes better."],
+          ["How many bags of concrete per post?","About two 50 lb fast-setting bags for a standard post in a properly sized hole. Taller and gate posts need more."],
+          ["How many rails per section?","Two for shorter fences, three for privacy fences six feet and taller. Gates and heavy panels may need extra bracing."],
+          ["Do I count gate posts separately?","Yes. Gate posts take more load, so set them deeper with extra concrete, and remember a gate opening replaces a panel section."]],
+  "fields":[["length","Fence length","ft",96,1],["spacing","Post spacing","ft",8,0.5],["rails","Rails per section","",3,1]],
+  "compute":"""var sections=v.spacing>0?H.ceil(v.length/v.spacing):0;var posts=sections+1;var rails=sections*v.rails;var conc=posts*2;
+return{label:"Fence sections",value:H.fmt(sections,0),unit:"panels",lines:[{label:"Posts",value:H.fmt(posts,0)},{label:"Rails",value:H.fmt(rails,0)},{label:"Concrete bags (~2/post)",value:H.fmt(conc,0)}],note:"Set gate and corner posts deeper with extra concrete."};""",
+ },
+ {
+  "slug":"roofing","cat":"Structural \u00b7 Exterior","name":"Roofing",
+  "grid":"Squares & shingle bundles",
+  "title":"Roofing Calculator: How Many Shingles Do I Need?",
+  "desc":"Free roofing calculator. Enter your roof area to get roofing squares and how many bundles of shingles you need, with waste included.",
+  "lede":"Estimate shingles for a roof. Enter the total roof area, meaning all planes and not the ground footprint, to get roofing squares and bundle counts with waste built in.",
+  "inputs_heading":"Roof area",
+  "howto":["Roofing is measured in squares, where one square equals 100 square feet of roof surface. Measure each roof plane and add them up, since a pitched roof has more area than the footprint below it.",
+           "Most architectural shingles come three bundles to a square. Add about 10% waste for starter courses, hips, ridges, and cutting."],
+  "formula":"squares = roof area (ft\u00b2) \u00f7 100\nbundles = squares \u00d7 (1 + waste) \u00d7 bundles per square",
+  "ex_title":"An 1,800 ft\u00b2 roof, 3 bundles per square",
+  "ex_steps":["Squares: 1,800 \u00f7 100 = <strong>18 squares</strong>","Add 10% waste: 18 \u00d7 1.10 = <strong>19.8 squares</strong>","Bundles: 19.8 \u00d7 3 = <strong>60 bundles</strong>"],
+  "ex_answer":"Order about 60 bundles (20 squares) of shingles.",
+  "table_intro":"Roof area by pitch (multiply the footprint):",
+  "table":[["Pitch","Multiplier","Note"],["Flat / low (2:12)","1.02","Nearly footprint"],["Medium (6:12)","1.12","Common"],["Steep (9:12)","1.25","More area"],["Very steep (12:12)","1.41","Much more"]],
+  "faqs":[["What is a roofing square?","One hundred square feet of roof surface. Shingles, underlayment, and labor are all quoted by the square."],
+          ["How many bundles in a square?","Three for most architectural shingles. Some heavier or specialty shingles run four bundles per square, so check the wrapper."],
+          ["How do I measure roof area?","Measure each roof plane (length times width) and add them together. Do not use the ground footprint, since a pitched roof has more surface than the area below it."],
+          ["How much extra should I add?","About 10% for starter strips, ridge caps, hips, valleys, and cut waste. Complex roofs with many valleys need more."]],
+  "fields":[["area","Roof area","ft\u00b2",1800,10],["bundles","Bundles per square","",3,1],["waste","Waste factor","%",10,1]],
+  "compute":"""var f=1+v.waste/100;var sq=v.area/100*f;var bundles=H.ceil(sq*v.bundles);
+return{label:"Shingle bundles",value:H.fmt(bundles,0),unit:"bundles",lines:[{label:"Roofing squares",value:H.fmt(sq,1)},{label:"Bundles/square",value:H.fmt(v.bundles,0)},{label:"Includes waste",value:v.waste+"%"}],note:"Measure actual roof planes, not the ground footprint. Add more for complex roofs."};""",
+ },
+ {
+  "slug":"deck","cat":"Structural \u00b7 Exterior","name":"Deck Boards",
+  "grid":"Decking boards by area",
+  "title":"Deck Board Calculator: How Many Boards Do I Need?",
+  "desc":"Free deck board calculator. Enter your deck size and board dimensions to get how many decking boards you need, with waste included.",
+  "lede":"Work out how many decking boards your deck needs. Enter the deck size and board dimensions to get a board count with waste for cuts and gaps.",
+  "inputs_heading":"Deck & board size",
+  "howto":["Board count is the deck area divided by the coverage of one board. A board covers its width times its length, so convert the board width from inches to feet before multiplying.",
+           "Add about 10% for cuts, gaps between boards, and the odd defect. Diagonal decking uses more, so allow 15%."],
+  "formula":"deck area = length (ft) \u00d7 width (ft)\nboard coverage = (board width in \u00f7 12) \u00d7 board length (ft)\nboards = deck area \u00d7 (1 + waste) \u00f7 board coverage",
+  "ex_title":"A 16 ft \u00d7 12 ft deck, 5.5 in \u00d7 12 ft boards",
+  "ex_steps":["Deck area: 16 \u00d7 12 = <strong>192 ft\u00b2</strong>","Board coverage: (5.5 \u00f7 12) \u00d7 12 = <strong>5.5 ft\u00b2</strong>","Add 10% waste: 192 \u00d7 1.10 = <strong>211 ft\u00b2</strong>","Boards: 211 \u00f7 5.5 = <strong>39 boards</strong>"],
+  "ex_answer":"Order 39 deck boards, plus fasteners and joist material.",
+  "table_intro":"Common decking board coverage (12 ft board):",
+  "table":[["Board","Actual width","Covers (12 ft)"],["5/4 \u00d7 6","5.5 in","5.5 ft\u00b2"],["2 \u00d7 6","5.5 in","5.5 ft\u00b2"],["2 \u00d7 4","3.5 in","3.5 ft\u00b2"],["1 \u00d7 6","5.5 in","5.5 ft\u00b2"]],
+  "faqs":[["How many deck boards do I need?","Divide the deck area by the coverage of one board (its actual width times its length), then add about 10% for cuts and gaps."],
+          ["What is the actual width of a deck board?","A nominal 6-inch board is about 5.5 inches wide. Use the actual width, not the nominal size, for an accurate count."],
+          ["Does board length matter?","It affects waste. Choosing board lengths that divide evenly into your deck run means fewer cuts and less offcut waste."],
+          ["What about joists and fasteners?","This tool covers decking boards. Joists depend on your framing spacing, and plan on roughly 350 screws or hidden clips per 100 square feet."]],
+  "fields":[["length","Deck length","ft",16,0.5],["width","Deck width","ft",12,0.5],["boardwidth","Board width","in",5.5,0.25],["boardlength","Board length","ft",12,0.5],["waste","Waste factor","%",10,1]],
+  "compute":"""var f=1+v.waste/100;var area=v.length*v.width;var bc=(v.boardwidth/12)*v.boardlength;var boards=bc>0?H.ceil(area*f/bc):0;
+return{label:"Deck boards",value:H.fmt(boards,0),unit:"boards",lines:[{label:"Deck area",value:H.fmt(area,0)+" ft\u00b2"},{label:"Board coverage",value:H.fmt(bc,1)+" ft\u00b2"},{label:"Includes waste",value:v.waste+"%"}],note:"Covers decking boards only. Add joists and ~350 fasteners per 100 ft\u00b2."};""",
+ },
 ]
 
 BY_SLUG = {c["slug"]: c for c in CALCS}
+
+COSTLABEL = {
+  "gravel":"Price per cubic yard","sand":"Price per cubic yard","crushed-stone":"Price per cubic yard",
+  "paver-base":"Price per cubic yard (base)","concrete":"Price per cubic yard","topsoil":"Price per cubic yard",
+  "mulch":"Price per cubic yard","sod":"Price per sq ft","paint":"Price per gallon","drywall":"Price per sheet",
+  "flooring":"Price per sq ft","tile":"Price per tile","fence":"Price per section",
+  "roofing":"Price per bundle","deck":"Price per board",
+}
+
+def price_field(c):
+    label = COSTLABEL.get(c["slug"], "Price per unit") + " (optional)"
+    return ["price", label, "$", "", 0.01]
 
 # ---------------------------------------------------------------------------
 def esc(s): return html.escape(s, quote=True)
@@ -491,7 +618,7 @@ def calc_page(c):
 <script src="assets/engine.js"></script>
 <script>
 window.CALC = {{
-  fields: {fields_js(c["fields"])},
+  fields: {fields_js(c["fields"] + [price_field(c)])},
   compute: function (v, H) {{
 {c["compute"]}
   }}

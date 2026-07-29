@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- HowMuchDoINeed build: 2026-07-26 v4 - 15 calculators + cost -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tile Calculator: How Many Tiles Do I Need? | HowMuchDoINeed</title>
+<meta name="description" content="Free tile calculator. Enter the area and your tile size to get how many tiles you need for a floor or wall, with cutting waste included.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://howmuchdoineed.toptierrankers.workers.dev/tile.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HowMuchDoINeed">
+<meta property="og:title" content="Tile Calculator: How Many Tiles Do I Need?">
+<meta property="og:description" content="Free tile calculator. Enter the area and your tile size to get how many tiles you need for a floor or wall, with cutting waste included.">
+<meta property="og:url" content="https://howmuchdoineed.toptierrankers.workers.dev/tile.html">
+<meta property="og:image" content="https://howmuchdoineed.toptierrankers.workers.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tile Calculator: How Many Tiles Do I Need?">
+<meta name="twitter:description" content="Free tile calculator. Enter the area and your tile size to get how many tiles you need for a floor or wall, with cutting waste included.">
+<meta name="twitter:image" content="https://howmuchdoineed.toptierrankers.workers.dev/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.svg?v=3" type="image/svg+xml">
+<link rel="alternate icon" href="assets/favicon.ico?v=3" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="assets/favicon-180.png?v=3">
+<link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many tiles do I need?", "acceptedAnswer": {"@type": "Answer", "text": "Divide the area to cover by the area of one tile, then add 10 to 15% for cuts and breakage. Round up to whole tiles."}}, {"@type": "Question", "name": "How much extra tile should I buy?", "acceptedAnswer": {"@type": "Answer", "text": "About 10% for straight layouts, 15% for diagonal. Buy a little more if the tile may be discontinued, so you have spares for repairs."}}, {"@type": "Question", "name": "How do I handle a wall with a door or window?", "acceptedAnswer": {"@type": "Answer", "text": "Calculate the full wall area, then subtract the opening area. For small openings many people skip this and let the waste factor absorb it."}}, {"@type": "Question", "name": "Do larger tiles waste more?", "acceptedAnswer": {"@type": "Answer", "text": "They can, because each cut removes a bigger piece. Large-format and diagonal layouts lean toward the higher end of the waste range."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Tile Calculator: How Many Tiles Do I Need?", "url": "https://howmuchdoineed.toptierrankers.workers.dev/tile.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free tile calculator. Enter the area and your tile size to get how many tiles you need for a floor or wall, with cutting waste included."}</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg class="brandmark" viewBox="0 0 64 64" width="24" height="24" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="13" fill="#16181A"/><polygon points="32,14 50,24 32,34 14,24" fill="#F6C463"/><polygon points="14,24 32,34 32,50 14,40" fill="#E39A0C"/><polygon points="50,24 50,40 32,50 32,34" fill="#A86E05"/></svg>HowMuchDoINeed</a>
+    <nav>
+      <a href="gravel.html">Aggregates</a>
+      <a href="concrete.html">Concrete</a>
+      <a href="paint.html">Paint</a>
+      <a href="index.html">All tools</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="pagehead">
+    <p class="eyebrow">Interior · Finishing</p>
+    <h1>Tile Calculator</h1>
+    <p class="lede">Work out how many tiles you need for a floor or wall. Enter the area and your tile size to get a tile count with cutting waste built in.</p>
+  </div>
+
+  <div class="calc">
+    <div class="calc-grid">
+      <div class="calc-inputs" id="calc-inputs"><h2>Area &amp; tile size</h2></div>
+      <aside class="calc-result" id="calc-result"></aside>
+    </div>
+  </div>
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">01</span>How to calculate tile</h2>
+    <p>Tile count is the area to cover divided by the area of one tile. Convert your tile dimensions from inches to feet, multiply for the tile area, then divide the wall or floor area by it.</p>
+    <p>Add about 10% for straight layouts and 15% for diagonal patterns, since cuts around edges and fixtures create waste. Keep spares for future repairs.</p>
+    <div class="formula">area = length (ft) × width (ft)
+tile area = (tile L ÷ 12) × (tile W ÷ 12)
+tiles = area × (1 + waste) ÷ tile area</div>
+  </section>
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">02</span>Worked example</h2>
+    <div class="example">
+      <h3>A 100 ft² floor with 12 in × 12 in tiles</h3>
+      <ol>
+        <li>Tile area: (12 ÷ 12) × (12 ÷ 12) = <strong>1 ft²</strong></li>
+        <li>Add 10% waste: 100 × 1.10 = <strong>110 ft²</strong></li>
+        <li>Divide by tile area: 110 ÷ 1 = <strong>110 tiles</strong></li>
+      </ol>
+      <div class="answer">Buy 110 tiles, plus a few spares for future repairs.</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">03</span>Reference</h2>
+    <p>Common tile sizes and coverage:</p>
+    <table class="ref">
+      <thead><tr><th>Tile size</th><th>Area each</th><th>Tiles per 100 ft²</th></tr></thead>
+      <tbody>
+        <tr><td>12 × 12 in</td><td>1.00 ft²</td><td>100</td></tr>
+        <tr><td>18 × 18 in</td><td>2.25 ft²</td><td>45</td></tr>
+        <tr><td>24 × 24 in</td><td>4.00 ft²</td><td>25</td></tr>
+        <tr><td>6 × 24 in plank</td><td>1.00 ft²</td><td>100</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block faq">
+    <h2 class="blocktitle"><span class="n">04</span>Common questions</h2>
+    <details><summary>How many tiles do I need?</summary>
+      <p>Divide the area to cover by the area of one tile, then add 10 to 15% for cuts and breakage. Round up to whole tiles.</p></details>
+    <details><summary>How much extra tile should I buy?</summary>
+      <p>About 10% for straight layouts, 15% for diagonal. Buy a little more if the tile may be discontinued, so you have spares for repairs.</p></details>
+    <details><summary>How do I handle a wall with a door or window?</summary>
+      <p>Calculate the full wall area, then subtract the opening area. For small openings many people skip this and let the waste factor absorb it.</p></details>
+    <details><summary>Do larger tiles waste more?</summary>
+      <p>They can, because each cut removes a bigger piece. Large-format and diagonal layouts lean toward the higher end of the waste range.</p></details>
+  </section>
+
+  <section class="tools">
+    <h2 class="blocktitle">Other material calculators</h2>
+    <div class="toolgrid">
+      <a class="tool" href="gravel.html"><div class="tname">Gravel</div><div class="tdesc">Driveways, paths &amp; drainage</div></a>
+      <a class="tool" href="sand.html"><div class="tname">Sand</div><div class="tdesc">Bedding, fill &amp; paver sand</div></a>
+      <a class="tool" href="crushed-stone.html"><div class="tname">Crushed Stone</div><div class="tdesc">Base rock &amp; #57 stone</div></a>
+      <a class="tool" href="paver-base.html"><div class="tname">Paver Base</div><div class="tdesc">Base + bedding under pavers</div></a>
+      <a class="tool" href="concrete.html"><div class="tname">Concrete</div><div class="tdesc">Slabs, footings &amp; bags</div></a>
+      <a class="tool" href="topsoil.html"><div class="tname">Topsoil</div><div class="tdesc">Lawns, beds &amp; fill</div></a>
+      <a class="tool" href="mulch.html"><div class="tname">Mulch</div><div class="tdesc">Garden beds &amp; bag counts</div></a>
+      <a class="tool" href="sod.html"><div class="tname">Sod</div><div class="tdesc">New lawns by pallet</div></a>
+      <a class="tool" href="paint.html"><div class="tname">Paint</div><div class="tdesc">Walls &amp; rooms by coverage</div></a>
+      <a class="tool" href="drywall.html"><div class="tname">Drywall</div><div class="tdesc">Sheets, screws &amp; mud</div></a>
+      <a class="tool" href="flooring.html"><div class="tname">Flooring</div><div class="tdesc">Laminate, vinyl &amp; wood by area</div></a>
+      <a class="tool" href="fence.html"><div class="tname">Fence</div><div class="tdesc">Posts, panels &amp; concrete</div></a>
+      <a class="tool" href="roofing.html"><div class="tname">Roofing</div><div class="tdesc">Squares &amp; shingle bundles</div></a>
+      <a class="tool" href="deck.html"><div class="tname">Deck Boards</div><div class="tdesc">Decking boards by area</div></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="fnote">HowMuchDoINeed: quick, no-nonsense material estimators for job sites and weekend projects. Figures are estimates; confirm quantities with your supplier.</div>
+    <nav><a href="gravel.html">Gravel</a><a href="sand.html">Sand</a><a href="crushed-stone.html">Crushed Stone</a><a href="paver-base.html">Paver Base</a><a href="concrete.html">Concrete</a><a href="topsoil.html">Topsoil</a><a href="mulch.html">Mulch</a><a href="sod.html">Sod</a><a href="paint.html">Paint</a><a href="drywall.html">Drywall</a><a href="flooring.html">Flooring</a><a href="tile.html">Tile</a><a href="fence.html">Fence</a><a href="roofing.html">Roofing</a><a href="deck.html">Deck Boards</a></nav>
+  </div>
+</footer>
+
+<script src="assets/engine.js"></script>
+<script>
+window.CALC = {
+  fields: [
+    {id:"length",label:"Length",unit:"ft",value:10,min:0,step:0.5},
+    {id:"width",label:"Width",unit:"ft",value:10,min:0,step:0.5},
+    {id:"tilel",label:"Tile length",unit:"in",value:12,min:0,step:0.5},
+    {id:"tilew",label:"Tile width",unit:"in",value:12,min:0,step:0.5},
+    {id:"waste",label:"Waste factor",unit:"%",value:10,min:0,step:1},
+    {id:"price",label:"Price per tile (optional)",unit:"$",value:"",min:0,step:0.01}
+  ],
+  compute: function (v, H) {
+var f=1+v.waste/100;var area=v.length*v.width;var ta=(v.tilel/12)*(v.tilew/12);var tiles=ta>0?H.ceil(area*f/ta):0;
+return{label:"Tiles needed",value:H.fmt(tiles,0),unit:"tiles",lines:[{label:"Area",value:H.fmt(area,0)+" ft²"},{label:"Tile size",value:v.tilel+"×"+v.tilew+" in"},{label:"Includes waste",value:v.waste+"%"}],note:"Buy spare tiles for repairs; dye lots can vary between batches."};
+  }
+};
+</script>
+</body>
+</html>

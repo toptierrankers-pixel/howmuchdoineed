@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- HowMuchDoINeed build: 2026-07-26 v4 - 15 calculators + cost -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deck Board Calculator: How Many Boards Do I Need? | HowMuchDoINeed</title>
+<meta name="description" content="Free deck board calculator. Enter your deck size and board dimensions to get how many decking boards you need, with waste included.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://howmuchdoineed.toptierrankers.workers.dev/deck.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HowMuchDoINeed">
+<meta property="og:title" content="Deck Board Calculator: How Many Boards Do I Need?">
+<meta property="og:description" content="Free deck board calculator. Enter your deck size and board dimensions to get how many decking boards you need, with waste included.">
+<meta property="og:url" content="https://howmuchdoineed.toptierrankers.workers.dev/deck.html">
+<meta property="og:image" content="https://howmuchdoineed.toptierrankers.workers.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deck Board Calculator: How Many Boards Do I Need?">
+<meta name="twitter:description" content="Free deck board calculator. Enter your deck size and board dimensions to get how many decking boards you need, with waste included.">
+<meta name="twitter:image" content="https://howmuchdoineed.toptierrankers.workers.dev/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.svg?v=3" type="image/svg+xml">
+<link rel="alternate icon" href="assets/favicon.ico?v=3" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="assets/favicon-180.png?v=3">
+<link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many deck boards do I need?", "acceptedAnswer": {"@type": "Answer", "text": "Divide the deck area by the coverage of one board (its actual width times its length), then add about 10% for cuts and gaps."}}, {"@type": "Question", "name": "What is the actual width of a deck board?", "acceptedAnswer": {"@type": "Answer", "text": "A nominal 6-inch board is about 5.5 inches wide. Use the actual width, not the nominal size, for an accurate count."}}, {"@type": "Question", "name": "Does board length matter?", "acceptedAnswer": {"@type": "Answer", "text": "It affects waste. Choosing board lengths that divide evenly into your deck run means fewer cuts and less offcut waste."}}, {"@type": "Question", "name": "What about joists and fasteners?", "acceptedAnswer": {"@type": "Answer", "text": "This tool covers decking boards. Joists depend on your framing spacing, and plan on roughly 350 screws or hidden clips per 100 square feet."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Deck Board Calculator: How Many Boards Do I Need?", "url": "https://howmuchdoineed.toptierrankers.workers.dev/deck.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free deck board calculator. Enter your deck size and board dimensions to get how many decking boards you need, with waste included."}</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg class="brandmark" viewBox="0 0 64 64" width="24" height="24" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="13" fill="#16181A"/><polygon points="32,14 50,24 32,34 14,24" fill="#F6C463"/><polygon points="14,24 32,34 32,50 14,40" fill="#E39A0C"/><polygon points="50,24 50,40 32,50 32,34" fill="#A86E05"/></svg>HowMuchDoINeed</a>
+    <nav>
+      <a href="gravel.html">Aggregates</a>
+      <a href="concrete.html">Concrete</a>
+      <a href="paint.html">Paint</a>
+      <a href="index.html">All tools</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="pagehead">
+    <p class="eyebrow">Structural · Exterior</p>
+    <h1>Deck Boards Calculator</h1>
+    <p class="lede">Work out how many decking boards your deck needs. Enter the deck size and board dimensions to get a board count with waste for cuts and gaps.</p>
+  </div>
+
+  <div class="calc">
+    <div class="calc-grid">
+      <div class="calc-inputs" id="calc-inputs"><h2>Deck &amp; board size</h2></div>
+      <aside class="calc-result" id="calc-result"></aside>
+    </div>
+  </div>
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">01</span>How to calculate deck boards</h2>
+    <p>Board count is the deck area divided by the coverage of one board. A board covers its width times its length, so convert the board width from inches to feet before multiplying.</p>
+    <p>Add about 10% for cuts, gaps between boards, and the odd defect. Diagonal decking uses more, so allow 15%.</p>
+    <div class="formula">deck area = length (ft) × width (ft)
+board coverage = (board width in ÷ 12) × board length (ft)
+boards = deck area × (1 + waste) ÷ board coverage</div>
+  </section>
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">02</span>Worked example</h2>
+    <div class="example">
+      <h3>A 16 ft × 12 ft deck, 5.5 in × 12 ft boards</h3>
+      <ol>
+        <li>Deck area: 16 × 12 = <strong>192 ft²</strong></li>
+        <li>Board coverage: (5.5 ÷ 12) × 12 = <strong>5.5 ft²</strong></li>
+        <li>Add 10% waste: 192 × 1.10 = <strong>211 ft²</strong></li>
+        <li>Boards: 211 ÷ 5.5 = <strong>39 boards</strong></li>
+      </ol>
+      <div class="answer">Order 39 deck boards, plus fasteners and joist material.</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="blocktitle"><span class="n">03</span>Reference</h2>
+    <p>Common decking board coverage (12 ft board):</p>
+    <table class="ref">
+      <thead><tr><th>Board</th><th>Actual width</th><th>Covers (12 ft)</th></tr></thead>
+      <tbody>
+        <tr><td>5/4 × 6</td><td>5.5 in</td><td>5.5 ft²</td></tr>
+        <tr><td>2 × 6</td><td>5.5 in</td><td>5.5 ft²</td></tr>
+        <tr><td>2 × 4</td><td>3.5 in</td><td>3.5 ft²</td></tr>
+        <tr><td>1 × 6</td><td>5.5 in</td><td>5.5 ft²</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block faq">
+    <h2 class="blocktitle"><span class="n">04</span>Common questions</h2>
+    <details><summary>How many deck boards do I need?</summary>
+      <p>Divide the deck area by the coverage of one board (its actual width times its length), then add about 10% for cuts and gaps.</p></details>
+    <details><summary>What is the actual width of a deck board?</summary>
+      <p>A nominal 6-inch board is about 5.5 inches wide. Use the actual width, not the nominal size, for an accurate count.</p></details>
+    <details><summary>Does board length matter?</summary>
+      <p>It affects waste. Choosing board lengths that divide evenly into your deck run means fewer cuts and less offcut waste.</p></details>
+    <details><summary>What about joists and fasteners?</summary>
+      <p>This tool covers decking boards. Joists depend on your framing spacing, and plan on roughly 350 screws or hidden clips per 100 square feet.</p></details>
+  </section>
+
+  <section class="tools">
+    <h2 class="blocktitle">Other material calculators</h2>
+    <div class="toolgrid">
+      <a class="tool" href="gravel.html"><div class="tname">Gravel</div><div class="tdesc">Driveways, paths &amp; drainage</div></a>
+      <a class="tool" href="sand.html"><div class="tname">Sand</div><div class="tdesc">Bedding, fill &amp; paver sand</div></a>
+      <a class="tool" href="crushed-stone.html"><div class="tname">Crushed Stone</div><div class="tdesc">Base rock &amp; #57 stone</div></a>
+      <a class="tool" href="paver-base.html"><div class="tname">Paver Base</div><div class="tdesc">Base + bedding under pavers</div></a>
+      <a class="tool" href="concrete.html"><div class="tname">Concrete</div><div class="tdesc">Slabs, footings &amp; bags</div></a>
+      <a class="tool" href="topsoil.html"><div class="tname">Topsoil</div><div class="tdesc">Lawns, beds &amp; fill</div></a>
+      <a class="tool" href="mulch.html"><div class="tname">Mulch</div><div class="tdesc">Garden beds &amp; bag counts</div></a>
+      <a class="tool" href="sod.html"><div class="tname">Sod</div><div class="tdesc">New lawns by pallet</div></a>
+      <a class="tool" href="paint.html"><div class="tname">Paint</div><div class="tdesc">Walls &amp; rooms by coverage</div></a>
+      <a class="tool" href="drywall.html"><div class="tname">Drywall</div><div class="tdesc">Sheets, screws &amp; mud</div></a>
+      <a class="tool" href="flooring.html"><div class="tname">Flooring</div><div class="tdesc">Laminate, vinyl &amp; wood by area</div></a>
+      <a class="tool" href="tile.html"><div class="tname">Tile</div><div class="tdesc">Floor &amp; wall tile counts</div></a>
+      <a class="tool" href="fence.html"><div class="tname">Fence</div><div class="tdesc">Posts, panels &amp; concrete</div></a>
+      <a class="tool" href="roofing.html"><div class="tname">Roofing</div><div class="tdesc">Squares &amp; shingle bundles</div></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="fnote">HowMuchDoINeed: quick, no-nonsense material estimators for job sites and weekend projects. Figures are estimates; confirm quantities with your supplier.</div>
+    <nav><a href="gravel.html">Gravel</a><a href="sand.html">Sand</a><a href="crushed-stone.html">Crushed Stone</a><a href="paver-base.html">Paver Base</a><a href="concrete.html">Concrete</a><a href="topsoil.html">Topsoil</a><a href="mulch.html">Mulch</a><a href="sod.html">Sod</a><a href="paint.html">Paint</a><a href="drywall.html">Drywall</a><a href="flooring.html">Flooring</a><a href="tile.html">Tile</a><a href="fence.html">Fence</a><a href="roofing.html">Roofing</a><a href="deck.html">Deck Boards</a></nav>
+  </div>
+</footer>
+
+<script src="assets/engine.js"></script>
+<script>
+window.CALC = {
+  fields: [
+    {id:"length",label:"Deck length",unit:"ft",value:16,min:0,step:0.5},
+    {id:"width",label:"Deck width",unit:"ft",value:12,min:0,step:0.5},
+    {id:"boardwidth",label:"Board width",unit:"in",value:5.5,min:0,step:0.25},
+    {id:"boardlength",label:"Board length",unit:"ft",value:12,min:0,step:0.5},
+    {id:"waste",label:"Waste factor",unit:"%",value:10,min:0,step:1},
+    {id:"price",label:"Price per board (optional)",unit:"$",value:"",min:0,step:0.01}
+  ],
+  compute: function (v, H) {
+var f=1+v.waste/100;var area=v.length*v.width;var bc=(v.boardwidth/12)*v.boardlength;var boards=bc>0?H.ceil(area*f/bc):0;
+return{label:"Deck boards",value:H.fmt(boards,0),unit:"boards",lines:[{label:"Deck area",value:H.fmt(area,0)+" ft²"},{label:"Board coverage",value:H.fmt(bc,1)+" ft²"},{label:"Includes waste",value:v.waste+"%"}],note:"Covers decking boards only. Add joists and ~350 fasteners per 100 ft²."};
+  }
+};
+</script>
+</body>
+</html>

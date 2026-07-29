@@ -108,6 +108,13 @@
       var run = function () {
         var v = readValues(inputsHost, cfg);
         var out = cfg.compute(v, H);
+        var price = parseFloat(v.price);
+        if (price > 0) {
+          var head = parseFloat(String(out.value).replace(/,/g, ""));
+          if (isFinite(head)) {
+            out.lines = (out.lines || []).concat([{ label: "Estimated cost", value: "$" + H.fmt(head * price, 2) }]);
+          }
+        }
         paint(rail, out);
       };
       inputsHost.appendChild(buildForm(cfg, run));
