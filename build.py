@@ -11,7 +11,7 @@ import json, html
 BASE = "https://howmuchdoineed.toptierrankers.workers.dev"
 SITE = "HowMuchDoINeed"
 FAVV = "3"
-BUILD = "2026-07-26 v4 - 15 calculators + cost"   # favicon cache-buster; bump when the icon changes
+BUILD = "2026-07-26 v5 - 21 calculators"   # favicon cache-buster; bump when the icon changes
 
 MARK = ('<svg class="brandmark" viewBox="0 0 64 64" width="24" height="24" aria-hidden="true">'
     '<rect x="4" y="4" width="56" height="56" rx="13" fill="#16181A"/>'
@@ -439,6 +439,144 @@ return{label:"Shingle bundles",value:H.fmt(bundles,0),unit:"bundles",lines:[{lab
   "compute":"""var f=1+v.waste/100;var area=v.length*v.width;var bc=(v.boardwidth/12)*v.boardlength;var boards=bc>0?H.ceil(area*f/bc):0;
 return{label:"Deck boards",value:H.fmt(boards,0),unit:"boards",lines:[{label:"Deck area",value:H.fmt(area,0)+" ft\u00b2"},{label:"Board coverage",value:H.fmt(bc,1)+" ft\u00b2"},{label:"Includes waste",value:v.waste+"%"}],note:"Covers decking boards only. Add joists and ~350 fasteners per 100 ft\u00b2."};""",
  },
+ {
+  "slug":"pea-gravel","cat":"Aggregates \u00b7 Landscaping","name":"Pea Gravel",
+  "grid":"Paths & patios by the yard",
+  "title":"Pea Gravel Calculator: How Much Do I Need?",
+  "desc":"Free pea gravel calculator. Enter length, width, and depth to get cubic yards and tons of pea gravel for paths, patios, and drainage.",
+  "lede":"Estimate pea gravel for a path, patio, or drainage bed. Enter the area and depth to get cubic yards and approximate tonnage.",
+  "inputs_heading":"Your measurements",
+  "howto":["Pea gravel is measured by volume and often sold by the ton. Multiply length by width by depth, convert depth to feet, and divide into cubic yards or tons.",
+           "Pea gravel is rounded and shifts underfoot, so two to three inches is plenty for a path. Use edging to keep it contained."],
+  "formula":"cubic feet = length (ft) \u00d7 width (ft) \u00d7 depth (in) \u00f7 12\ncubic yards = cubic feet \u00f7 27\ntons \u2248 cubic yards \u00d7 1.4",
+  "ex_title":"A 20 ft \u00d7 4 ft path, 2 inches deep",
+  "ex_steps":["Volume: 20 \u00d7 4 \u00d7 (2 \u00f7 12) = <strong>13.3 ft\u00b3</strong>","Cubic yards: 13.3 \u00f7 27 = <strong>0.49 yd\u00b3</strong>","Add 10% waste: 0.49 \u00d7 1.10 = <strong>0.54 yd\u00b3</strong>","Tons: 0.54 \u00d7 1.4 = <strong>0.76 tons</strong>"],
+  "ex_answer":"Order about half a cubic yard (roughly 0.8 tons) of pea gravel.",
+  "table_intro":"Depth guide:",
+  "table":[["Use","Depth","1 yd\u00b3 covers"],["Walking path","2 in","162 sq ft"],["Patio topping","2-3 in","108-162 sq ft"],["Dog run / play area","2 in","162 sq ft"],["Drainage","varies","n/a"]],
+  "faqs":[["How deep should pea gravel be?","Two to three inches for paths and patios. Deeper than that feels loose underfoot because the stones are rounded."],
+          ["How many tons in a yard of pea gravel?","About 1.4, though rounded pea gravel can run a little lighter. Confirm the density with your supplier before ordering by weight."],
+          ["Does pea gravel need edging?","Yes. Because the stones are smooth and round, they migrate easily. Edging keeps a path or patio from spreading into the lawn."],
+          ["Can I put pea gravel over dirt?","It lasts longer over a compacted base with landscape fabric underneath, which blocks weeds and stops the stone sinking into the soil."]],
+  "fields":[["length","Length","ft",20,0.5],["width","Width","ft",4,0.5],["depth","Depth","in",2,0.5],["waste","Waste factor","%",10,1]],
+  "compute":"""var f=1+v.waste/100;var cf=v.length*v.width*(v.depth/12)*f;var cy=cf/27,tons=cy*1.4;
+return{label:"Pea gravel",value:H.fmt(cy,2),unit:"cubic yards",lines:[{label:"Volume",value:H.fmt(cf,1)+" ft\u00b3"},{label:"Weight (approx)",value:H.fmt(tons,2)+" tons"},{label:"Includes waste",value:v.waste+"%"}],note:"Pea gravel density varies ~1.25-1.4 t/yd\u00b3; confirm with your supplier."};""",
+ },
+ {
+  "slug":"river-rock","cat":"Aggregates \u00b7 Landscaping","name":"River Rock",
+  "grid":"Decorative stone by the yard",
+  "title":"River Rock Calculator: How Much Do I Need?",
+  "desc":"Free river rock calculator. Enter length, width, and depth to get cubic yards and tons of river rock for beds, borders, and drainage.",
+  "lede":"Estimate river rock for a bed, border, or dry creek. Enter the area and depth to get cubic yards and approximate tonnage.",
+  "inputs_heading":"Your measurements",
+  "howto":["River rock is sold by volume or weight. Multiply length by width by depth, convert depth to feet, then divide into cubic yards or tons.",
+           "Larger river rock needs more depth to cover the ground fully. Two inches suits small stone; go three or more for larger cobbles."],
+  "formula":"cubic feet = length (ft) \u00d7 width (ft) \u00d7 depth (in) \u00f7 12\ncubic yards = cubic feet \u00f7 27\ntons \u2248 cubic yards \u00d7 1.4",
+  "ex_title":"A 12 ft \u00d7 6 ft bed, 3 inches deep",
+  "ex_steps":["Volume: 12 \u00d7 6 \u00d7 (3 \u00f7 12) = <strong>18 ft\u00b3</strong>","Cubic yards: 18 \u00f7 27 = <strong>0.67 yd\u00b3</strong>","Add 10% waste: 0.67 \u00d7 1.10 = <strong>0.73 yd\u00b3</strong>","Tons: 0.73 \u00d7 1.4 = <strong>1.03 tons</strong>"],
+  "ex_answer":"Order about three-quarters of a cubic yard (about 1 ton).",
+  "table_intro":"Depth by stone size:",
+  "table":[["Stone size","Depth","Note"],["Small (0.5-1 in)","2 in","Even coverage"],["Medium (1-2 in)","3 in","Common"],["Large (2-4 in)","3-4 in","Fewer gaps"],["Cobble (4 in+)","4 in+","Accent only"]],
+  "faqs":[["How deep should river rock be?","About two inches for small stone and three or more for larger rock, so the ground underneath is fully hidden."],
+          ["How many tons in a yard of river rock?","Roughly 1.4, varying with stone size and type. Ask your supplier for the density of the specific rock."],
+          ["Should I use landscape fabric under river rock?","Yes, in most beds. Fabric blocks weeds and keeps the stone from working down into the soil."],
+          ["Is river rock good for drainage?","Very. It does not compact, so water moves through it freely, which is why it is popular for dry creeks and French drains."]],
+  "fields":[["length","Length","ft",12,0.5],["width","Width","ft",6,0.5],["depth","Depth","in",3,0.5],["waste","Waste factor","%",10,1]],
+  "compute":"""var f=1+v.waste/100;var cf=v.length*v.width*(v.depth/12)*f;var cy=cf/27,tons=cy*1.4;
+return{label:"River rock",value:H.fmt(cy,2),unit:"cubic yards",lines:[{label:"Volume",value:H.fmt(cf,1)+" ft\u00b3"},{label:"Weight (approx)",value:H.fmt(tons,2)+" tons"},{label:"Includes waste",value:v.waste+"%"}],note:"Tonnage assumes ~1.4 t/yd\u00b3; larger stone can vary. Confirm with your supplier."};""",
+ },
+ {
+  "slug":"play-sand","cat":"Aggregates \u00b7 Landscaping","name":"Play Sand",
+  "grid":"Sandboxes & play areas",
+  "title":"Play Sand Calculator: How Much Do I Need?",
+  "desc":"Free play sand calculator. Enter your sandbox size and depth to get cubic yards, cubic feet, and how many 50 lb bags of play sand you need.",
+  "lede":"Work out how much play sand to fill a sandbox or play area. Enter the size and depth to get cubic feet, cubic yards, and bag counts.",
+  "inputs_heading":"Sandbox measurements",
+  "howto":["Play sand fills a volume, so multiply length by width by depth and convert depth to feet. Bagged play sand is usually 50 pounds, covering about 0.5 cubic feet each.",
+           "For a sandbox, six inches of sand is a good play depth. For a base leveling layer under a paver or pool, one to two inches is enough."],
+  "formula":"cubic feet = length (ft) \u00d7 width (ft) \u00d7 depth (in) \u00f7 12\ncubic yards = cubic feet \u00f7 27\n50 lb bags = cubic feet \u00f7 0.5",
+  "ex_title":"A 5 ft \u00d7 5 ft sandbox, 6 inches deep",
+  "ex_steps":["Volume: 5 \u00d7 5 \u00d7 (6 \u00f7 12) = <strong>12.5 ft\u00b3</strong>","Cubic yards: 12.5 \u00f7 27 = <strong>0.46 yd\u00b3</strong>","In 50 lb bags: 12.5 \u00f7 0.5 = <strong>25 bags</strong>"],
+  "ex_answer":"Fill this sandbox with about 25 fifty-pound bags of play sand.",
+  "table_intro":"Sand depth by use:",
+  "table":[["Use","Depth","Note"],["Sandbox play","6 in","Comfortable depth"],["Under a play set","3-6 in","Cushioning"],["Paver / pool base","1-2 in","Leveling layer"],["Sand table","2-3 in","Small fill"]],
+  "faqs":[["How much play sand for a sandbox?","Aim for about six inches of depth. Multiply the box length by width by half a foot to get cubic feet, then divide by 0.5 for the number of 50 pound bags."],
+          ["How many bags of play sand do I need?","Each 50 pound bag covers about half a cubic foot. Divide your total cubic feet by 0.5 to get the bag count."],
+          ["Is play sand different from regular sand?","Yes. Play sand is washed and screened to remove dust and sharp pieces, which makes it safer and cleaner for children."],
+          ["How often should I replace sandbox sand?","Top it up as it scatters, and replace it every year or two, or sooner if it stays damp or gets dirty."]],
+  "fields":[["length","Length","ft",5,0.5],["width","Width","ft",5,0.5],["depth","Depth","in",6,0.5],["waste","Waste factor","%",5,1]],
+  "compute":"""var f=1+v.waste/100;var cf=v.length*v.width*(v.depth/12)*f;var cy=cf/27,bags=H.ceil(cf/0.5);
+return{label:"Play sand",value:H.fmt(cy,2),unit:"cubic yards",lines:[{label:"50 lb bags",value:H.fmt(bags,0)},{label:"Volume",value:H.fmt(cf,1)+" ft\u00b3"},{label:"Includes waste",value:v.waste+"%"}],note:"Each 50 lb bag holds ~0.5 ft\u00b3. Use washed, screened play sand for sandboxes."};""",
+ },
+ {
+  "slug":"asphalt","cat":"Aggregates \u00b7 Landscaping","name":"Asphalt",
+  "grid":"Driveways by the ton",
+  "title":"Asphalt Calculator: How Much Asphalt Do I Need?",
+  "desc":"Free asphalt calculator. Enter your driveway size and thickness to get the tons of hot-mix asphalt needed, with a waste factor built in.",
+  "lede":"Estimate hot-mix asphalt for a driveway or lot. Enter the area and compacted thickness to get the tonnage to order, with waste built in.",
+  "inputs_heading":"Paving area",
+  "howto":["Asphalt is ordered by the ton. Multiply length by width by thickness, convert thickness to feet, then multiply the cubic feet by the mix density (about 148 pounds per cubic foot) and divide by 2,000 for tons.",
+           "A residential driveway is usually 2 to 3 inches of compacted asphalt over a stone base. Thicker layers carry heavier loads."],
+  "formula":"cubic feet = length (ft) \u00d7 width (ft) \u00d7 thickness (in) \u00f7 12\ntons = cubic feet \u00d7 148 \u00f7 2,000",
+  "ex_title":"A 40 ft \u00d7 12 ft driveway, 3 inches thick",
+  "ex_steps":["Volume: 40 \u00d7 12 \u00d7 (3 \u00f7 12) = <strong>120 ft\u00b3</strong>","Add 10% waste: 120 \u00d7 1.10 = <strong>132 ft\u00b3</strong>","Tons: 132 \u00d7 148 \u00f7 2,000 = <strong>9.77 tons</strong>"],
+  "ex_answer":"Order about 10 tons of hot-mix asphalt.",
+  "table_intro":"Compacted thickness by use:",
+  "table":[["Use","Thickness","Note"],["Overlay on old asphalt","1.5 in","Resurfacing"],["Residential driveway","2-3 in","Over stone base"],["Parking lot","3-4 in","Light vehicles"],["Heavy traffic","4 in+","Trucks"]],
+  "faqs":[["How many tons of asphalt do I need?","Find the volume in cubic feet (area times thickness), multiply by about 148 pounds per cubic foot, and divide by 2,000. Add roughly 10% for compaction and waste."],
+          ["How thick should a driveway be?","Two to three inches of compacted hot-mix over a solid stone base for a residential driveway. Go thicker for heavier vehicles."],
+          ["How much does asphalt weigh?","Hot-mix asphalt weighs roughly 145 to 150 pounds per cubic foot, or about 2 tons per cubic yard. Density varies by mix."],
+          ["Do I need a base under asphalt?","Yes. A compacted crushed-stone base is essential. Asphalt laid straight on soil cracks and fails quickly."]],
+  "fields":[["length","Length","ft",40,0.5],["width","Width","ft",12,0.5],["thickness","Thickness","in",3,0.5],["waste","Waste factor","%",10,1]],
+  "compute":"""var f=1+v.waste/100;var cf=v.length*v.width*(v.thickness/12)*f;var tons=cf*148/2000;var cy=cf/27;
+return{label:"Asphalt needed",value:H.fmt(tons,2),unit:"tons",lines:[{label:"Cubic yards",value:H.fmt(cy,2)+" yd\u00b3"},{label:"Volume",value:H.fmt(cf,1)+" ft\u00b3"},{label:"Includes waste",value:v.waste+"%"}],note:"Hot-mix asphalt ~148 lb/ft\u00b3. Confirm mix density with your supplier."};""",
+ },
+ {
+  "slug":"square-footage","cat":"Tools \u00b7 Converters","name":"Square Footage","nocost":True,
+  "grid":"Area for any project",
+  "title":"Square Footage Calculator: Find Your Area",
+  "desc":"Free square footage calculator. Enter length and width to get area in square feet, square yards, acres, and square meters for any room or lot.",
+  "lede":"Find the square footage of a room, wall, lot, or project. Enter length and width to get the area in square feet, plus square yards, acres, and square meters.",
+  "inputs_heading":"Measurements",
+  "howto":["Square footage is length times width. Measure both sides in feet and multiply. For several identical areas, set the number of areas and the total is multiplied for you.",
+           "For rooms that are not simple rectangles, split the space into rectangles, find each area, and add them together."],
+  "formula":"area (ft\u00b2) = length (ft) \u00d7 width (ft) \u00d7 number of areas\nsquare yards = ft\u00b2 \u00f7 9      acres = ft\u00b2 \u00f7 43,560",
+  "ex_title":"A 20 ft \u00d7 15 ft room",
+  "ex_steps":["Multiply the sides: 20 \u00d7 15 = <strong>300 ft\u00b2</strong>","In square yards: 300 \u00f7 9 = <strong>33.3 yd\u00b2</strong>","In square meters: 300 \u00d7 0.0929 = <strong>27.9 m\u00b2</strong>"],
+  "ex_answer":"The room is 300 square feet.",
+  "table_intro":"Handy area conversions:",
+  "table":[["From","To","Convert"],["Square feet","Square yards","divide by 9"],["Square feet","Square meters","multiply by 0.0929"],["Square feet","Acres","divide by 43,560"],["Acres","Square feet","multiply by 43,560"]],
+  "faqs":[["How do I calculate square footage?","Measure the length and width in feet and multiply them. The result is the area in square feet. For L-shaped spaces, split into rectangles and add each area."],
+          ["How many square feet are in a square yard?","Nine. To convert square feet to square yards, divide by nine. Flooring and some materials are priced by the square yard."],
+          ["How do I find the size of a lot in acres?","Divide the square footage by 43,560, the number of square feet in one acre."],
+          ["What if my room is not a rectangle?","Break it into rectangles and triangles, calculate each piece, and add them. For a triangle, area is half the base times the height."]],
+  "fields":[["length","Length","ft",20,0.5],["width","Width","ft",15,0.5],["quantity","Number of areas","",1,1]],
+  "compute":"""var q=v.quantity>0?v.quantity:1;var area=v.length*v.width*q;
+return{label:"Total area",value:H.fmt(area,0),unit:"sq ft",lines:[{label:"Square yards",value:H.fmt(area/9,1)},{label:"Acres",value:H.fmt(area/43560,3)},{label:"Square meters",value:H.fmt(area*0.092903,1)}],note:"For odd shapes, split into rectangles and add the areas together."};""",
+ },
+ {
+  "slug":"cubic-yards-to-tons","cat":"Tools \u00b7 Converters","name":"Cubic Yards to Tons","nocost":True,
+  "grid":"Convert volume to weight",
+  "title":"Cubic Yards to Tons Calculator",
+  "desc":"Free cubic yards to tons converter. Enter a volume in cubic yards and pick a material to get the approximate weight in tons and pounds.",
+  "lede":"Convert a volume in cubic yards into weight. Enter the cubic yards and choose a material to get the approximate tonnage, using typical densities.",
+  "inputs_heading":"Volume & material",
+  "howto":["Weight is volume times density. Each material has a typical density in tons per cubic yard, so multiply your cubic yards by that figure to get tons.",
+           "These are average densities. Moisture, compaction, and the exact product all shift the real weight, so treat the result as a planning estimate."],
+  "formula":"tons = cubic yards \u00d7 density (tons per cubic yard)\npounds = tons \u00d7 2,000",
+  "ex_title":"5 cubic yards of gravel",
+  "ex_steps":["Gravel density: about <strong>1.4 t/yd\u00b3</strong>","Multiply: 5 \u00d7 1.4 = <strong>7 tons</strong>","In pounds: 7 \u00d7 2,000 = <strong>14,000 lb</strong>"],
+  "ex_answer":"5 cubic yards of gravel weighs about 7 tons.",
+  "table_intro":"Typical material densities:",
+  "table":[["Material","Tons per yd\u00b3","Note"],["Topsoil","1.1","Screened"],["Sand","1.35","Dry"],["Gravel","1.4","Typical"],["Crushed stone","1.4","Varies by grade"],["Concrete","2.03","Cured"],["Asphalt","2.0","Hot mix"]],
+  "faqs":[["How do I convert cubic yards to tons?","Multiply the cubic yards by the material density in tons per cubic yard. Gravel is about 1.4, sand about 1.35, topsoil about 1.1."],
+          ["Why does the material matter?","Different materials weigh very different amounts for the same volume. A cubic yard of mulch is light; a cubic yard of concrete is heavy."],
+          ["Are these weights exact?","No, they are averages. Moisture and compaction change the real weight, so confirm with your supplier when ordering by the ton."],
+          ["How many pounds in a ton?","Two thousand pounds in a US short ton, which is the unit most suppliers quote."]],
+  "fields":[["cy","Cubic yards","yd\u00b3",1,0.1],["material","Material",None,1.4,None,[["Gravel",1.4],["Sand",1.35],["Crushed stone",1.4],["Topsoil",1.1],["Mulch",0.5],["Concrete",2.03],["Asphalt",2.0]]]],
+  "compute":"""var d=parseFloat(v.material)||0;var tons=v.cy*d;var lbs=tons*2000;
+return{label:"Weight",value:H.fmt(tons,2),unit:"tons",lines:[{label:"Pounds",value:H.fmt(lbs,0)+" lb"},{label:"Density",value:d+" t/yd\u00b3"},{label:"Cubic yards",value:H.fmt(v.cy,2)}],note:"Densities are typical averages; wet material weighs more."};""",
+ },
 ]
 
 BY_SLUG = {c["slug"]: c for c in CALCS}
@@ -449,6 +587,7 @@ COSTLABEL = {
   "mulch":"Price per cubic yard","sod":"Price per sq ft","paint":"Price per gallon","drywall":"Price per sheet",
   "flooring":"Price per sq ft","tile":"Price per tile","fence":"Price per section",
   "roofing":"Price per bundle","deck":"Price per board",
+  "pea-gravel":"Price per cubic yard","river-rock":"Price per cubic yard","play-sand":"Price per cubic yard","asphalt":"Price per ton",
 }
 
 def price_field(c):
@@ -618,7 +757,7 @@ def calc_page(c):
 <script src="assets/engine.js"></script>
 <script>
 window.CALC = {{
-  fields: {fields_js(c["fields"] + [price_field(c)])},
+  fields: {fields_js(c["fields"] if c.get("nocost") else c["fields"] + [price_field(c)])},
   compute: function (v, H) {{
 {c["compute"]}
   }}
