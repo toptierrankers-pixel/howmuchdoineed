@@ -11,7 +11,16 @@ import json, html
 BASE = "https://howmuchdoineed.toptierrankers.workers.dev"
 SITE = "HowMuchDoINeed"
 FAVV = "3"
-BUILD = "2026-07-26 v5 - 21 calculators"   # favicon cache-buster; bump when the icon changes
+BUILD = "2026-07-26 v6 - 25 calculators"
+
+ANALYTICS_TOKEN = ""  # paste your Cloudflare Web Analytics token here, then rebuild, to enable
+
+def analytics():
+    if not ANALYTICS_TOKEN:
+        return ""
+    return ('\n<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
+            'data-cf-beacon=\'{"token": "' + ANALYTICS_TOKEN + '"}\'></script>')
+   # favicon cache-buster; bump when the icon changes
 
 MARK = ('<svg class="brandmark" viewBox="0 0 64 64" width="24" height="24" aria-hidden="true">'
     '<rect x="4" y="4" width="56" height="56" rx="13" fill="#16181A"/>'
@@ -577,6 +586,98 @@ return{label:"Total area",value:H.fmt(area,0),unit:"sq ft",lines:[{label:"Square
   "compute":"""var d=parseFloat(v.material)||0;var tons=v.cy*d;var lbs=tons*2000;
 return{label:"Weight",value:H.fmt(tons,2),unit:"tons",lines:[{label:"Pounds",value:H.fmt(lbs,0)+" lb"},{label:"Density",value:d+" t/yd\u00b3"},{label:"Cubic yards",value:H.fmt(v.cy,2)}],note:"Densities are typical averages; wet material weighs more."};""",
  },
+ {
+  "slug":"insulation","cat":"Interior \u00b7 Finishing","name":"Insulation",
+  "grid":"Batts by area & coverage",
+  "title":"Insulation Calculator: How Much Insulation Do I Need?",
+  "desc":"Free insulation calculator. Enter your wall or ceiling area and the coverage per bundle to get how many bundles of batt insulation you need.",
+  "lede":"Estimate batt insulation for walls or a ceiling. Enter the area to cover and the coverage printed on the bundle to get how many bundles to buy.",
+  "inputs_heading":"Area to insulate",
+  "howto":["Batt insulation is sold by the bundle, each covering a set number of square feet at a given R-value. Multiply the wall or ceiling area, add a little for trimming, then divide by the bundle coverage.",
+           "Coverage drops as R-value rises, so a bundle of R-30 covers less area than a bundle of R-13. Always divide by the coverage printed on your bundle."],
+  "formula":"bundles = area (ft\u00b2) \u00d7 (1 + waste) \u00f7 coverage per bundle",
+  "ex_title":"A 500 ft\u00b2 wall, 40 ft\u00b2 per bundle",
+  "ex_steps":["Add 5% waste: 500 \u00d7 1.05 = <strong>525 ft\u00b2</strong>","Divide by coverage: 525 \u00f7 40 = <strong>13.1</strong>","Round up: <strong>14 bundles</strong>"],
+  "ex_answer":"Buy 14 bundles to insulate the wall.",
+  "table_intro":"Typical batt coverage by R-value (check your bundle):",
+  "table":[["R-value","Use","Coverage/bundle"],["R-13","2x4 walls","~40 ft\u00b2"],["R-15","2x4 walls","~40 ft\u00b2"],["R-19","2x6 walls","~48 ft\u00b2"],["R-30","Ceilings","~88 ft\u00b2"]],
+  "faqs":[["How much insulation do I need?","Measure the wall or ceiling area, then divide by the coverage printed on the bundle for your R-value. Add about 5% for trimming."],
+          ["Does R-value change how much I buy?","Yes. Higher R-value batts are thicker and cover less area per bundle, so a bundle of R-30 covers less than a bundle of R-13."],
+          ["Do I subtract windows and doors?","For a rough estimate you can, but many people skip it and let the small waste factor absorb the openings."],
+          ["Batts or blown-in?","Batts suit open walls and standard joist spacing. Blown-in works better for attics and irregular cavities. This tool estimates batts."]],
+  "fields":[["area","Area to cover","ft\u00b2",500,10],["coverage","Coverage per bundle","ft\u00b2",40,1],["waste","Waste factor","%",5,1]],
+  "compute":"""var f=1+v.waste/100;var b=H.ceil(v.area*f/v.coverage);
+return{label:"Insulation bundles",value:H.fmt(b,0),unit:"bundles",lines:[{label:"Area",value:H.fmt(v.area,0)+" ft\u00b2"},{label:"Coverage/bundle",value:v.coverage+" ft\u00b2"},{label:"Includes waste",value:v.waste+"%"}],note:"Coverage varies by R-value; use the figure printed on your bundle."};""",
+ },
+ {
+  "slug":"wallpaper","cat":"Interior \u00b7 Finishing","name":"Wallpaper",
+  "grid":"Rolls by wall area",
+  "title":"Wallpaper Calculator: How Many Rolls Do I Need?",
+  "desc":"Free wallpaper calculator. Enter your wall perimeter and height to get the wall area and how many rolls of wallpaper you need, with pattern waste included.",
+  "lede":"Work out how many rolls of wallpaper you need. Enter the distance around the room and the wall height to get rolls, with extra for pattern matching.",
+  "inputs_heading":"Wall measurements",
+  "howto":["Wallpaper is estimated from wall area divided by the usable coverage of a roll. Measure the distance around the room and multiply by the wall height, then divide by the roll coverage.",
+           "Pattern repeats waste paper at every strip, so add about 15%. Large patterns waste more. Buy all rolls from the same batch for a consistent color."],
+  "formula":"wall area = perimeter (ft) \u00d7 height (ft)\nrolls = wall area \u00d7 (1 + waste) \u00f7 coverage per roll",
+  "ex_title":"A room 40 ft around, 8 ft high, 25 ft\u00b2 per roll",
+  "ex_steps":["Wall area: 40 \u00d7 8 = <strong>320 ft\u00b2</strong>","Add 15% waste: 320 \u00d7 1.15 = <strong>368 ft\u00b2</strong>","Divide by roll coverage: 368 \u00f7 25 = <strong>14.7</strong>","Round up: <strong>15 rolls</strong>"],
+  "ex_answer":"Buy 15 single rolls, all from the same batch.",
+  "table_intro":"Roll coverage guide:",
+  "table":[["Roll type","Roll size","Usable coverage"],["Single roll","~27 ft\u00b2","~25 ft\u00b2"],["Double roll","~56 ft\u00b2","~50 ft\u00b2"],["Euro roll","~29 ft\u00b2","~28 ft\u00b2"],["Pattern repeat","varies","adds waste"]],
+  "faqs":[["How many rolls of wallpaper do I need?","Find the wall area (distance around the room times height), add about 15% for pattern matching, and divide by the usable coverage of a roll."],
+          ["Why add extra for the pattern?","Matching a repeating pattern means trimming waste from every strip. Larger repeats waste more, so 15% is a safe starting point."],
+          ["Should I subtract doors and windows?","For big openings you can subtract them, but the pattern waste often cancels out the saving. When unsure, do not subtract."],
+          ["Single roll or double roll?","Wallpaper is often priced as single rolls but sold as double-roll bolts. Calculate in single rolls, then buy the bolt count that covers it."]],
+  "fields":[["perimeter","Distance around room","ft",40,0.5],["height","Wall height","ft",8,0.5],["coverage","Coverage per roll","ft\u00b2",25,1],["waste","Waste factor","%",15,1]],
+  "compute":"""var f=1+v.waste/100;var area=v.perimeter*v.height;var rolls=H.ceil(area*f/v.coverage);
+return{label:"Wallpaper rolls",value:H.fmt(rolls,0),unit:"rolls",lines:[{label:"Wall area",value:H.fmt(area,0)+" ft\u00b2"},{label:"Coverage/roll",value:v.coverage+" ft\u00b2"},{label:"Includes waste",value:v.waste+"%"}],note:"Buy all rolls from one batch so the color matches."};""",
+ },
+ {
+  "slug":"grass-seed","cat":"Soil \u00b7 Garden","name":"Grass Seed",
+  "grid":"Seed by lawn area",
+  "title":"Grass Seed Calculator: How Much Seed Do I Need?",
+  "desc":"Free grass seed calculator. Enter your lawn size and seeding rate to get the pounds of grass seed needed for a new lawn or overseeding.",
+  "lede":"Work out how much grass seed to buy. Enter the lawn area and a seeding rate to get the pounds of seed for a new lawn or overseeding.",
+  "inputs_heading":"Lawn measurements",
+  "howto":["Grass seed is applied at a rate of pounds per 1,000 square feet. Multiply your lawn area, divide by 1,000, and multiply by the seeding rate for your grass type.",
+           "New lawns use roughly twice the seed of overseeding an existing lawn. Check the rate on your seed bag, since it varies by species."],
+  "formula":"pounds = area (ft\u00b2) \u00f7 1,000 \u00d7 seeding rate (lb per 1,000 ft\u00b2)",
+  "ex_title":"A 5,000 ft\u00b2 new lawn at 5 lb per 1,000 ft\u00b2",
+  "ex_steps":["Divide area by 1,000: 5,000 \u00f7 1,000 = <strong>5</strong>","Multiply by the rate: 5 \u00d7 5 = <strong>25 lb</strong>"],
+  "ex_answer":"Buy about 25 pounds of grass seed for the new lawn.",
+  "table_intro":"Typical seeding rates:",
+  "table":[["Task","Rate (lb/1,000 ft\u00b2)","Note"],["New lawn (most grasses)","4-6","Full coverage"],["Overseeding","2-3","Thickening"],["Tall fescue","6-8","Heavier seed"],["Bluegrass","2-3","Fine seed"]],
+  "faqs":[["How much grass seed do I need?","Divide your lawn area by 1,000, then multiply by the seeding rate on the bag. New lawns use about 4 to 6 pounds per 1,000 square feet."],
+          ["How much seed for overseeding?","Roughly half the new-lawn rate, about 2 to 3 pounds per 1,000 square feet, since you are thickening existing grass rather than starting bare."],
+          ["Does grass type change the rate?","Yes. Fine seeds like bluegrass need less by weight; larger seeds like tall fescue need more. Always follow the bag rate for your species."],
+          ["Can I use too much seed?","Yes. Overseeding heavily makes seedlings compete and can weaken the lawn. Stick close to the recommended rate."]],
+  "fields":[["length","Length","ft",100,1],["width","Width","ft",50,1],["rate","Seeding rate","lb/1k ft\u00b2",5,0.5]],
+  "compute":"""var area=v.length*v.width;var lbs=area/1000*v.rate;
+return{label:"Grass seed",value:H.fmt(lbs,1),unit:"lb",lines:[{label:"Lawn area",value:H.fmt(area,0)+" ft\u00b2"},{label:"Rate",value:v.rate+" lb/1k ft\u00b2"}],note:"New lawns need about double the overseeding rate. Follow your bag."};""",
+ },
+ {
+  "slug":"retaining-wall","cat":"Concrete \u00b7 Masonry","name":"Retaining Wall Block",
+  "grid":"Block counts by wall size",
+  "title":"Retaining Wall Calculator: How Many Blocks Do I Need?",
+  "desc":"Free retaining wall block calculator. Enter your wall length and height and block size to get how many blocks you need, with waste included.",
+  "lede":"Work out how many blocks your retaining wall needs. Enter the wall length and height and your block size to get a block count with waste built in.",
+  "inputs_heading":"Wall & block size",
+  "howto":["Block count is the wall face divided by the face size of one block. Work out blocks per row from the wall length and block length, and the number of rows from the wall height and block height, then multiply.",
+           "Add a small waste factor for cuts at ends and corners. Cap blocks and the base course of gravel and leveling sand are extra."],
+  "formula":"blocks per row = wall length (in) \u00f7 block length (in)\nrows = wall height (in) \u00f7 block height (in)\nblocks = blocks per row \u00d7 rows \u00d7 (1 + waste)",
+  "ex_title":"A 20 ft long, 2 ft high wall, 12 in \u00d7 4 in blocks",
+  "ex_steps":["Blocks per row: (20 \u00d7 12) \u00f7 12 = <strong>20</strong>","Rows: (2 \u00d7 12) \u00f7 4 = <strong>6</strong>","Blocks: 20 \u00d7 6 = <strong>120</strong>","Add 5% waste: 120 \u00d7 1.05 = <strong>126 blocks</strong>"],
+  "ex_answer":"Order about 126 wall blocks, plus caps and base material.",
+  "table_intro":"Common block face sizes:",
+  "table":[["Block","Length","Height"],["Standard","12 in","4 in"],["Large","18 in","6 in"],["Small","8 in","4 in"],["Cap block","varies","2-3 in"]],
+  "faqs":[["How many retaining wall blocks do I need?","Divide the wall length by the block length for blocks per row, divide the wall height by the block height for rows, then multiply the two and add about 5% waste."],
+          ["Do I need a base course?","Yes. The first course sits below grade on compacted gravel and leveling sand. It is the most important row for a straight, stable wall."],
+          ["What about cap blocks?","Caps finish the top row and are counted separately, usually one cap per block length along the wall. Add construction adhesive for the caps."],
+          ["How high can I build without an engineer?","Many areas allow segmental walls up to about 3 to 4 feet before requiring engineering or a permit. Check local codes before building higher."]],
+  "fields":[["length","Wall length","ft",20,0.5],["height","Wall height","ft",2,0.5],["blocklen","Block length","in",12,0.5],["blockheight","Block height","in",4,0.5],["waste","Waste factor","%",5,1]],
+  "compute":"""var per=v.blocklen>0?H.ceil(v.length*12/v.blocklen):0;var rows=v.blockheight>0?H.ceil(v.height*12/v.blockheight):0;var blocks=H.ceil(per*rows*(1+v.waste/100));
+return{label:"Wall blocks",value:H.fmt(blocks,0),unit:"blocks",lines:[{label:"Rows",value:H.fmt(rows,0)},{label:"Blocks per row",value:H.fmt(per,0)},{label:"Includes waste",value:v.waste+"%"}],note:"Caps and the gravel base course are extra. Check local codes for wall height limits."};""",
+ },
 ]
 
 BY_SLUG = {c["slug"]: c for c in CALCS}
@@ -588,6 +689,7 @@ COSTLABEL = {
   "flooring":"Price per sq ft","tile":"Price per tile","fence":"Price per section",
   "roofing":"Price per bundle","deck":"Price per board",
   "pea-gravel":"Price per cubic yard","river-rock":"Price per cubic yard","play-sand":"Price per cubic yard","asphalt":"Price per ton",
+  "insulation":"Price per bundle","wallpaper":"Price per roll","grass-seed":"Price per lb","retaining-wall":"Price per block",
 }
 
 def price_field(c):
@@ -611,11 +713,13 @@ def fields_js(fields):
     return "[\n    " + ",\n    ".join(out) + "\n  ]"
 
 def others_grid(current):
-    cards = []
-    for c in CALCS:
-        if c["slug"] == current: continue
-        cards.append('<a class="tool" href="%s.html"><div class="tname">%s</div><div class="tdesc">%s</div></a>'
-                     % (c["slug"], esc(c["name"]), esc(c["grid"])))
+    cur = BY_SLUG.get(current); curcat = cur["cat"] if cur else None
+    same = [c for c in CALCS if c["slug"] != current and c["cat"] == curcat]
+    rest = [c for c in CALCS if c["slug"] != current and c["cat"] != curcat]
+    ordered = (same + rest)[:7]
+    cards = ['<a class="tool" href="%s.html"><div class="tname">%s</div><div class="tdesc">%s</div></a>'
+             % (c["slug"], esc(c["name"]), esc(c["grid"])) for c in ordered]
+    cards.append('<a class="tool" href="index.html"><div class="tname">All tools</div><div class="tdesc">See all %d calculators</div></a>' % len(CALCS))
     return "\n      ".join(cards)
 
 def head_common(title, desc, canonical, og_extra=""):
@@ -644,7 +748,7 @@ def head_common(title, desc, canonical, og_extra=""):
 <link rel="icon" href="assets/favicon.svg?v={FAVV}" type="image/svg+xml">
 <link rel="alternate icon" href="assets/favicon.ico?v={FAVV}" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="assets/favicon-180.png?v={FAVV}">
-<link rel="stylesheet" href="assets/styles.css">'''
+<link rel="stylesheet" href="assets/styles.css">{analytics()}'''
 
 TOPBAR = f'''<header class="topbar">
   <div class="wrap">
@@ -744,7 +848,7 @@ def calc_page(c):
   </section>
 
   <section class="tools">
-    <h2 class="blocktitle">Other material calculators</h2>
+    <h2 class="blocktitle">Related calculators</h2>
     <div class="toolgrid">
       {others_grid(c["slug"])}
     </div>
