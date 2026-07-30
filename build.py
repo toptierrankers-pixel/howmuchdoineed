@@ -11,7 +11,7 @@ import json, html
 BASE = "https://howmuchdoineed.toptierrankers.workers.dev"
 SITE = "HowMuchDoINeed"
 FAVV = "3"
-BUILD = "2026-07-26 v7 - 25 calculators + guides"
+BUILD = "2026-07-26 v8 - 25 calculators + 7 guides"
 
 ANALYTICS_TOKEN = ""  # paste your Cloudflare Web Analytics token here, then rebuild, to enable
 
@@ -956,110 +956,390 @@ def robots():
 # ---------------------------------------------------------------------------
 # Cost guides (article-style pages that link into the calculators)
 # ---------------------------------------------------------------------------
-GUIDES = [
- {
-  "slug":"gravel-driveway-cost","calc_slug":"gravel","calc_name":"Gravel",
-  "eyebrow":"Cost guide \u00b7 Aggregates",
-  "name":"Gravel Driveway Cost","griddesc":"What a gravel driveway costs",
-  "title":"Gravel Driveway Cost: What You Will Pay",
-  "desc":"What does a gravel driveway cost? A clear breakdown of gravel prices per ton, delivery, installation per square foot, and how to estimate your own driveway.",
-  "h1":"How Much Does a Gravel Driveway Cost?",
-  "lede":"Gravel is the cheapest way to surface a driveway. Here is what the material, delivery, and installation typically run, plus how to estimate the tonnage for your own driveway.",
-  "glance_label":"Typical installed driveway",
-  "glance_range":"$1,200 to $4,500",
-  "glance_note":"Roughly $1 to $3 per square foot installed. A flat, do-it-yourself job can cost far less, since you pay only for material and delivery.",
-  "intro":["A gravel driveway is priced two ways: the loose material by the ton or cubic yard, and the finished job by the square foot once delivery, base preparation, and labor are included.",
-           "As a rough guide, expect about 1 to 3 dollars per square foot for a professionally installed gravel driveway over a prepared base. A basic material-only refresh that you spread yourself costs a fraction of that."],
-  "breakdown_intro":"The main cost pieces for a gravel driveway:",
-  "breakdown_table":[["Item","Typical range","Notes"],
-    ["Gravel material","$15 to $75 per ton","Crushed stone low, decorative and pea gravel higher"],
-    ["Delivery","$50 to $150 per load","Depends on distance and truck size"],
-    ["Base / sub-base stone","$15 to $40 per ton","Larger stone under the top layer"],
-    ["Grading and prep","$1 to $2 per sq ft","Excavation, leveling, fabric"],
-    ["Installed, all-in (pro)","$1 to $3 per sq ft","Material, base, labor"],
-    ["DIY, material only","40 to 60% less","You supply the labor"]],
-  "factors":["Size is the biggest driver. A long or double-wide driveway needs more tons, and cost scales almost directly with area and depth.",
-             "Gravel type matters. Plain crushed stone and crusher run are cheapest; decorative river rock, pea gravel, and colored stone cost more per ton.",
-             "Depth and layers add up. A durable driveway is built in layers, a coarse base topped with a finer surface, so it needs more material than a single thin layer.",
-             "Site prep can dominate a quote. Excavation, hauling away old material, grading for drainage, and landscape fabric all add labor and cost.",
-             "Delivery distance and region shift the total. Rural sites far from a quarry pay more for hauling, and prices vary widely by area."],
-  "diy_title":"DIY or hire a pro?",
-  "diy":["A gravel top-up on a flat, stable driveway is a reasonable do-it-yourself job. You order the tonnage, have it delivered, and spread and rake it. Your main cost is material and delivery.",
-         "Hire a pro when the driveway is new, needs excavation, has drainage problems, or sits on a slope. Proper grading and a compacted base are what keep gravel from washing out and rutting, and that is worth paying for on a full build."],
-  "faqs":[["How much does a gravel driveway cost?","Roughly 1 to 3 dollars per square foot installed by a contractor. A material-only DIY refresh costs much less, since you pay only for the gravel and delivery."],
-          ["Is a gravel driveway cheaper than concrete or asphalt?","Yes, by a wide margin. Gravel is the least expensive driveway surface up front, though it needs occasional top-ups that concrete and asphalt do not."],
-          ["How much gravel do I need for a driveway?","Multiply length by width by depth to get the volume, then convert to tons. Plan on 4 to 6 inches of depth for a driveway. The gravel calculator does this for you."],
-          ["How long does a gravel driveway last?","Many years with light upkeep. Expect to add a fresh top layer every few years and to regrade occasionally to fill ruts and keep drainage working."]],
- },
- {
-  "slug":"concrete-slab-cost","calc_slug":"concrete","calc_name":"Concrete",
-  "eyebrow":"Cost guide \u00b7 Concrete",
-  "name":"Concrete Slab Cost","griddesc":"What a concrete slab costs",
-  "title":"Concrete Slab Cost: Per Square Foot and Per Yard",
-  "desc":"What does a concrete slab cost? Prices per square foot installed, per cubic yard of ready-mix, DIY versus pro, and how to estimate the concrete for your slab.",
-  "h1":"How Much Does a Concrete Slab Cost?",
-  "lede":"Concrete slab cost comes down to size, thickness, and finish. Here is what ready-mix costs per yard, what a finished slab runs per square foot, and how to estimate your own pour.",
-  "glance_label":"Installed concrete slab",
-  "glance_range":"$4 to $8 per sq ft",
-  "glance_note":"Basic broom-finish slabs sit in this range. Reinforcement, decorative finishes, and small pours push it higher. Ready-mix alone is about $120 to $180 per cubic yard.",
-  "intro":["A concrete slab is priced by the square foot once you include material, forming, reinforcement, labor, and finishing. The concrete itself is sold by the cubic yard as ready-mix, or by the bag for small pours.",
-           "A basic broom-finished slab commonly runs 4 to 8 dollars per square foot installed. Decorative finishes and heavy reinforcement can push that well above 10."],
-  "breakdown_intro":"The main cost pieces for a concrete slab:",
-  "breakdown_table":[["Item","Typical range","Notes"],
-    ["Ready-mix concrete","$120 to $180 per yd\u00b3","Delivered, before labor"],
-    ["Installed slab (basic)","$4 to $8 per sq ft","Broom finish, standard thickness"],
-    ["Installed slab (finished)","$8 to $12+ per sq ft","Stamped, colored, or polished"],
-    ["80 lb bag (DIY)","$5 to $8 per bag","Small pads and posts only"],
-    ["Reinforcement","$0.50 to $1.50 per sq ft","Wire mesh, rebar, or fiber"],
-    ["Pump truck","$150 to $250","Only if the mixer cannot reach"]],
-  "factors":["Thickness sets the volume. A 4 inch slab is standard for patios and floors; driveways and load-bearing slabs go to 5 or 6 inches and use proportionally more concrete.",
-             "Square footage changes the per-foot price. Small slabs cost more per square foot because setup, delivery, and minimum charges spread over less area.",
-             "Finish is a big lever. A plain broom finish is cheapest. Stamped, stained, exposed-aggregate, and polished finishes add labor and material.",
-             "Reinforcement and prep add up. Wire mesh, rebar, a gravel sub-base, and forming all add to a bare pour, and they are what make a slab last.",
-             "Access and region matter. If a mixer cannot reach the site you may need a pump, and local labor and material rates vary widely."],
-  "diy_title":"DIY or hire a pro?",
-  "diy":["Bagged concrete is fine for a small pad, footing, or setting posts. Once you are past roughly half a cubic yard, bags stop making sense and ready-mix is cheaper and faster.",
-         "Pouring and finishing a large slab is demanding work with a short time window before the concrete sets. Forming, screeding, and finishing a smooth, flat slab takes skill, so most people hire a pro for anything sizable or visible."],
-  "faqs":[["How much does a concrete slab cost?","Most basic slabs run 4 to 8 dollars per square foot installed. Decorative finishes and reinforcement push the price higher."],
-          ["How much does a yard of concrete cost?","Ready-mix concrete is roughly 120 to 180 dollars per cubic yard delivered, before forming, labor, and finishing."],
-          ["Is it cheaper to pour concrete yourself?","The material alone is much cheaper than a full installed price, but slabs are labor-intensive and time-sensitive. DIY saves money only if you have the skill and help."],
-          ["How much concrete do I need?","Multiply length by width by thickness to get the volume in cubic yards. The concrete calculator also gives you the number of 60 and 80 pound bags."]],
- },
- {
-  "slug":"sod-cost","calc_slug":"sod","calc_name":"Sod",
-  "eyebrow":"Cost guide \u00b7 Lawn",
-  "name":"Sod Cost","griddesc":"What sod costs to buy and install",
-  "title":"Sod Cost: Per Square Foot and Per Pallet",
-  "desc":"What does sod cost? Prices per square foot and per pallet, installation cost, sod versus seed, and how to estimate how much sod your lawn needs.",
-  "h1":"How Much Does Sod Cost?",
-  "lede":"Sod gives an instant lawn, at a higher price than seed. Here is what sod costs per square foot and per pallet, what installation adds, and how to estimate your lawn.",
-  "glance_label":"Installed sod lawn",
-  "glance_range":"$0.90 to $2.00 per sq ft",
-  "glance_note":"The sod itself is about $0.30 to $0.80 per square foot. The rest is soil prep, delivery, and labor. A pallet covers roughly 450 square feet.",
-  "intro":["Sod is priced by the square foot or by the pallet for the grass itself, plus soil preparation and labor if a crew installs it. A pallet typically covers about 450 square feet.",
-           "Laid by a pro over prepared soil, sod commonly runs about 0.90 to 2.00 dollars per square foot all-in. Buying and laying it yourself costs much less, since labor is the largest part."],
-  "breakdown_intro":"The main cost pieces for a sod lawn:",
-  "breakdown_table":[["Item","Typical range","Notes"],
-    ["Sod material","$0.30 to $0.80 per sq ft","Varies by grass type and region"],
-    ["Per pallet","$150 to $450","Covers about 450 sq ft"],
-    ["Soil prep and grading","$0.50 to $1.00 per sq ft","Tilling, leveling, amendments"],
-    ["Installation labor","$0.30 to $0.90 per sq ft","Laying and rolling"],
-    ["Old lawn removal","adds to the total","If replacing existing grass"],
-    ["Delivery","$50 to $150","Per load, by distance"]],
-  "factors":["Lawn size drives the pallet count and the labor. Larger lawns cost more overall but often a little less per square foot.",
-             "Grass type changes the material price. Common cool-season and warm-season grasses are affordable; specialty or drought-tolerant varieties cost more.",
-             "Site prep is a real cost. Removing an old lawn, tilling, grading, and adding topsoil all add labor before a single roll goes down.",
-             "Slope and access affect labor. Steep or hard-to-reach yards take longer to prepare and lay.",
-             "Season and region matter. Sod is cheapest and establishes best in the growing season, and prices vary by local farm supply."],
-  "diy_title":"DIY or hire a pro?",
-  "diy":["Laying sod yourself is achievable on a small, already-level yard. You prepare the soil, order pallets, and lay and roll the sod, paying mainly for material and delivery.",
-         "Hire a pro for large lawns, heavy grading, or old-lawn removal. Even coverage and good soil contact are what let sod root, and a crew with the right tools gets that done fast before the sod dries out."],
-  "faqs":[["How much does sod cost per square foot?","The sod itself is about 0.30 to 0.80 dollars per square foot. Installed over prepared soil, expect roughly 0.90 to 2.00 dollars per square foot."],
-          ["How much does a pallet of sod cost?","Usually 150 to 450 dollars, and a pallet covers around 450 square feet, though coverage varies by farm."],
-          ["Is sod cheaper than seed?","No. Seed costs far less up front. Sod costs more but gives an instant, established lawn with less risk of washout and weeds."],
-          ["How much sod do I need?","Multiply your lawn length by width for the area, then divide by the pallet coverage. The sod calculator gives pallets and rolls with a cutting allowance."]],
- },
-]
+GUIDES = [{'slug': 'gravel-driveway-cost',
+  'calc_slug': 'gravel',
+  'calc_name': 'Gravel',
+  'eyebrow': 'Cost guide · Aggregates',
+  'name': 'Gravel Driveway Cost',
+  'griddesc': 'What a gravel driveway costs',
+  'title': 'Gravel Driveway Cost: What You Will Pay',
+  'desc': 'What does a gravel driveway cost? A clear breakdown of gravel prices per ton, delivery, installation '
+          'per square foot, and how to estimate your own driveway.',
+  'h1': 'How Much Does a Gravel Driveway Cost?',
+  'lede': 'Gravel is the cheapest way to surface a driveway. Here is what the material, delivery, and '
+          'installation typically run, plus how to estimate the tonnage for your own driveway.',
+  'glance_label': 'Typical installed driveway',
+  'glance_range': '$1,200 to $4,500',
+  'glance_note': 'Roughly $1 to $3 per square foot installed. A flat, do-it-yourself job can cost far less, since '
+                 'you pay only for material and delivery.',
+  'intro': ['A gravel driveway is priced two ways: the loose material by the ton or cubic yard, and the finished '
+            'job by the square foot once delivery, base preparation, and labor are included.',
+            'As a rough guide, expect about 1 to 3 dollars per square foot for a professionally installed gravel '
+            'driveway over a prepared base. A basic material-only refresh that you spread yourself costs a '
+            'fraction of that.'],
+  'breakdown_intro': 'The main cost pieces for a gravel driveway:',
+  'breakdown_table': [['Item', 'Typical range', 'Notes'],
+                      ['Gravel material',
+                       '$15 to $75 per ton',
+                       'Crushed stone low, decorative and pea gravel higher'],
+                      ['Delivery', '$50 to $150 per load', 'Depends on distance and truck size'],
+                      ['Base / sub-base stone', '$15 to $40 per ton', 'Larger stone under the top layer'],
+                      ['Grading and prep', '$1 to $2 per sq ft', 'Excavation, leveling, fabric'],
+                      ['Installed, all-in (pro)', '$1 to $3 per sq ft', 'Material, base, labor'],
+                      ['DIY, material only', '40 to 60% less', 'You supply the labor']],
+  'factors': ['Size is the biggest driver. A long or double-wide driveway needs more tons, and cost scales almost '
+              'directly with area and depth.',
+              'Gravel type matters. Plain crushed stone and crusher run are cheapest; decorative river rock, pea '
+              'gravel, and colored stone cost more per ton.',
+              'Depth and layers add up. A durable driveway is built in layers, a coarse base topped with a finer '
+              'surface, so it needs more material than a single thin layer.',
+              'Site prep can dominate a quote. Excavation, hauling away old material, grading for drainage, and '
+              'landscape fabric all add labor and cost.',
+              'Delivery distance and region shift the total. Rural sites far from a quarry pay more for hauling, '
+              'and prices vary widely by area.'],
+  'diy_title': 'DIY or hire a pro?',
+  'diy': ['A gravel top-up on a flat, stable driveway is a reasonable do-it-yourself job. You order the tonnage, '
+          'have it delivered, and spread and rake it. Your main cost is material and delivery.',
+          'Hire a pro when the driveway is new, needs excavation, has drainage problems, or sits on a slope. '
+          'Proper grading and a compacted base are what keep gravel from washing out and rutting, and that is '
+          'worth paying for on a full build.'],
+  'faqs': [['How much does a gravel driveway cost?',
+            'Roughly 1 to 3 dollars per square foot installed by a contractor. A material-only DIY refresh costs '
+            'much less, since you pay only for the gravel and delivery.'],
+           ['Is a gravel driveway cheaper than concrete or asphalt?',
+            'Yes, by a wide margin. Gravel is the least expensive driveway surface up front, though it needs '
+            'occasional top-ups that concrete and asphalt do not.'],
+           ['How much gravel do I need for a driveway?',
+            'Multiply length by width by depth to get the volume, then convert to tons. Plan on 4 to 6 inches of '
+            'depth for a driveway. The gravel calculator does this for you.'],
+           ['How long does a gravel driveway last?',
+            'Many years with light upkeep. Expect to add a fresh top layer every few years and to regrade '
+            'occasionally to fill ruts and keep drainage working.']]},
+ {'slug': 'concrete-slab-cost',
+  'calc_slug': 'concrete',
+  'calc_name': 'Concrete',
+  'eyebrow': 'Cost guide · Concrete',
+  'name': 'Concrete Slab Cost',
+  'griddesc': 'What a concrete slab costs',
+  'title': 'Concrete Slab Cost: Per Square Foot and Per Yard',
+  'desc': 'What does a concrete slab cost? Prices per square foot installed, per cubic yard of ready-mix, DIY '
+          'versus pro, and how to estimate the concrete for your slab.',
+  'h1': 'How Much Does a Concrete Slab Cost?',
+  'lede': 'Concrete slab cost comes down to size, thickness, and finish. Here is what ready-mix costs per yard, '
+          'what a finished slab runs per square foot, and how to estimate your own pour.',
+  'glance_label': 'Installed concrete slab',
+  'glance_range': '$4 to $8 per sq ft',
+  'glance_note': 'Basic broom-finish slabs sit in this range. Reinforcement, decorative finishes, and small pours '
+                 'push it higher. Ready-mix alone is about $120 to $180 per cubic yard.',
+  'intro': ['A concrete slab is priced by the square foot once you include material, forming, reinforcement, '
+            'labor, and finishing. The concrete itself is sold by the cubic yard as ready-mix, or by the bag for '
+            'small pours.',
+            'A basic broom-finished slab commonly runs 4 to 8 dollars per square foot installed. Decorative '
+            'finishes and heavy reinforcement can push that well above 10.'],
+  'breakdown_intro': 'The main cost pieces for a concrete slab:',
+  'breakdown_table': [['Item', 'Typical range', 'Notes'],
+                      ['Ready-mix concrete', '$120 to $180 per yd³', 'Delivered, before labor'],
+                      ['Installed slab (basic)', '$4 to $8 per sq ft', 'Broom finish, standard thickness'],
+                      ['Installed slab (finished)', '$8 to $12+ per sq ft', 'Stamped, colored, or polished'],
+                      ['80 lb bag (DIY)', '$5 to $8 per bag', 'Small pads and posts only'],
+                      ['Reinforcement', '$0.50 to $1.50 per sq ft', 'Wire mesh, rebar, or fiber'],
+                      ['Pump truck', '$150 to $250', 'Only if the mixer cannot reach']],
+  'factors': ['Thickness sets the volume. A 4 inch slab is standard for patios and floors; driveways and '
+              'load-bearing slabs go to 5 or 6 inches and use proportionally more concrete.',
+              'Square footage changes the per-foot price. Small slabs cost more per square foot because setup, '
+              'delivery, and minimum charges spread over less area.',
+              'Finish is a big lever. A plain broom finish is cheapest. Stamped, stained, exposed-aggregate, and '
+              'polished finishes add labor and material.',
+              'Reinforcement and prep add up. Wire mesh, rebar, a gravel sub-base, and forming all add to a bare '
+              'pour, and they are what make a slab last.',
+              'Access and region matter. If a mixer cannot reach the site you may need a pump, and local labor '
+              'and material rates vary widely.'],
+  'diy_title': 'DIY or hire a pro?',
+  'diy': ['Bagged concrete is fine for a small pad, footing, or setting posts. Once you are past roughly half a '
+          'cubic yard, bags stop making sense and ready-mix is cheaper and faster.',
+          'Pouring and finishing a large slab is demanding work with a short time window before the concrete '
+          'sets. Forming, screeding, and finishing a smooth, flat slab takes skill, so most people hire a pro for '
+          'anything sizable or visible.'],
+  'faqs': [['How much does a concrete slab cost?',
+            'Most basic slabs run 4 to 8 dollars per square foot installed. Decorative finishes and reinforcement '
+            'push the price higher.'],
+           ['How much does a yard of concrete cost?',
+            'Ready-mix concrete is roughly 120 to 180 dollars per cubic yard delivered, before forming, labor, '
+            'and finishing.'],
+           ['Is it cheaper to pour concrete yourself?',
+            'The material alone is much cheaper than a full installed price, but slabs are labor-intensive and '
+            'time-sensitive. DIY saves money only if you have the skill and help.'],
+           ['How much concrete do I need?',
+            'Multiply length by width by thickness to get the volume in cubic yards. The concrete calculator also '
+            'gives you the number of 60 and 80 pound bags.']]},
+ {'slug': 'sod-cost',
+  'calc_slug': 'sod',
+  'calc_name': 'Sod',
+  'eyebrow': 'Cost guide · Lawn',
+  'name': 'Sod Cost',
+  'griddesc': 'What sod costs to buy and install',
+  'title': 'Sod Cost: Per Square Foot and Per Pallet',
+  'desc': 'What does sod cost? Prices per square foot and per pallet, installation cost, sod versus seed, and how '
+          'to estimate how much sod your lawn needs.',
+  'h1': 'How Much Does Sod Cost?',
+  'lede': 'Sod gives an instant lawn, at a higher price than seed. Here is what sod costs per square foot and per '
+          'pallet, what installation adds, and how to estimate your lawn.',
+  'glance_label': 'Installed sod lawn',
+  'glance_range': '$0.90 to $2.00 per sq ft',
+  'glance_note': 'The sod itself is about $0.30 to $0.80 per square foot. The rest is soil prep, delivery, and '
+                 'labor. A pallet covers roughly 450 square feet.',
+  'intro': ['Sod is priced by the square foot or by the pallet for the grass itself, plus soil preparation and '
+            'labor if a crew installs it. A pallet typically covers about 450 square feet.',
+            'Laid by a pro over prepared soil, sod commonly runs about 0.90 to 2.00 dollars per square foot '
+            'all-in. Buying and laying it yourself costs much less, since labor is the largest part.'],
+  'breakdown_intro': 'The main cost pieces for a sod lawn:',
+  'breakdown_table': [['Item', 'Typical range', 'Notes'],
+                      ['Sod material', '$0.30 to $0.80 per sq ft', 'Varies by grass type and region'],
+                      ['Per pallet', '$150 to $450', 'Covers about 450 sq ft'],
+                      ['Soil prep and grading', '$0.50 to $1.00 per sq ft', 'Tilling, leveling, amendments'],
+                      ['Installation labor', '$0.30 to $0.90 per sq ft', 'Laying and rolling'],
+                      ['Old lawn removal', 'adds to the total', 'If replacing existing grass'],
+                      ['Delivery', '$50 to $150', 'Per load, by distance']],
+  'factors': ['Lawn size drives the pallet count and the labor. Larger lawns cost more overall but often a little '
+              'less per square foot.',
+              'Grass type changes the material price. Common cool-season and warm-season grasses are affordable; '
+              'specialty or drought-tolerant varieties cost more.',
+              'Site prep is a real cost. Removing an old lawn, tilling, grading, and adding topsoil all add labor '
+              'before a single roll goes down.',
+              'Slope and access affect labor. Steep or hard-to-reach yards take longer to prepare and lay.',
+              'Season and region matter. Sod is cheapest and establishes best in the growing season, and prices '
+              'vary by local farm supply.'],
+  'diy_title': 'DIY or hire a pro?',
+  'diy': ['Laying sod yourself is achievable on a small, already-level yard. You prepare the soil, order pallets, '
+          'and lay and roll the sod, paying mainly for material and delivery.',
+          'Hire a pro for large lawns, heavy grading, or old-lawn removal. Even coverage and good soil contact '
+          'are what let sod root, and a crew with the right tools gets that done fast before the sod dries out.'],
+  'faqs': [['How much does sod cost per square foot?',
+            'The sod itself is about 0.30 to 0.80 dollars per square foot. Installed over prepared soil, expect '
+            'roughly 0.90 to 2.00 dollars per square foot.'],
+           ['How much does a pallet of sod cost?',
+            'Usually 150 to 450 dollars, and a pallet covers around 450 square feet, though coverage varies by '
+            'farm.'],
+           ['Is sod cheaper than seed?',
+            'No. Seed costs far less up front. Sod costs more but gives an instant, established lawn with less '
+            'risk of washout and weeds.'],
+           ['How much sod do I need?',
+            'Multiply your lawn length by width for the area, then divide by the pallet coverage. The sod '
+            'calculator gives pallets and rolls with a cutting allowance.']]},
+ {'slug': 'paver-patio-cost',
+  'calc_slug': 'paver-base',
+  'calc_name': 'Paver Base',
+  'eyebrow': 'Cost guide · Hardscape',
+  'name': 'Paver Patio Cost',
+  'griddesc': 'What a paver patio costs',
+  'title': 'Paver Patio Cost: Price Per Square Foot',
+  'desc': 'What does a paver patio cost? Prices per square foot installed and DIY, paver and base material costs, '
+          'and how to estimate the base and sand you need.',
+  'h1': 'How Much Does a Paver Patio Cost?',
+  'lede': 'A paver patio costs more than poured concrete but lasts and looks better. Here is the price per square '
+          'foot installed and as a DIY job, plus how to estimate your base materials.',
+  'glance_label': 'Installed paver patio',
+  'glance_range': '$10 to $25 per sq ft',
+  'glance_note': 'Basic pavers over a standard base sit at the low end. Premium or permeable pavers and complex '
+                 'patterns run higher. DIY material alone is roughly $3 to $6 per square foot.',
+  'intro': ['A paver patio is priced by the square foot, covering the pavers themselves plus the crushed-stone '
+            'base, bedding sand, edging, and labor. Material quality and pattern complexity move the number the '
+            'most.',
+            'Installed by a pro, a basic paver patio commonly runs 10 to 17 dollars per square foot, with premium '
+            'and permeable systems pushing toward 25. Doing it yourself cuts out the labor, the largest single '
+            'cost.'],
+  'breakdown_intro': 'The main cost pieces for a paver patio:',
+  'breakdown_table': [['Item', 'Typical range', 'Notes'],
+                      ['Pavers', '$2 to $8 per sq ft', 'Concrete low, clay and premium higher'],
+                      ['Base stone and sand', '$1 to $3 per sq ft', 'Crushed base plus bedding sand'],
+                      ['Installed, basic (pro)', '$10 to $17 per sq ft', 'Standard pavers and base'],
+                      ['Installed, premium (pro)',
+                       '$17 to $25+ per sq ft',
+                       'Clay, permeable, or intricate patterns'],
+                      ['Edging and polymeric sand', '$1 to $2 per sq ft', 'Holds the field together'],
+                      ['DIY, material only', '$3 to $6 per sq ft', 'You supply the labor']],
+  'factors': ['Paver type is the biggest swing. Standard concrete pavers are affordable; clay brick, natural '
+              'stone, and permeable pavers cost more per square foot.',
+              'Patio size affects the per-foot price. Larger patios spread setup and delivery over more area, so '
+              'they often cost a little less per square foot.',
+              'Base depth and prep matter. A patio over soft soil needs a deeper compacted base, and excavation '
+              'and hauling spoil away add labor.',
+              'Pattern complexity adds labor. Herringbone, borders, and curves take longer to cut and lay than a '
+              'simple running bond.',
+              'Slope, drainage, and access all shift the labor, and prices vary by region.'],
+  'diy_title': 'DIY or hire a pro?',
+  'diy': ['A small, flat paver patio is a popular do-it-yourself project. The work is excavation, a compacted '
+          'base, screeded bedding sand, laying the pavers, and locking them with edging and polymeric sand.',
+          'The base is everything. Most failed patios fail because the base was too thin or poorly compacted. '
+          'Hire a pro for large patios, poor soil, or anything on a slope, where getting the base and drainage '
+          'right is worth the labor cost.'],
+  'faqs': [['How much does a paver patio cost?',
+            'Roughly 10 to 25 dollars per square foot installed, depending on the paver and the base. A DIY patio '
+            'costs much less since labor is the biggest part.'],
+           ['Are pavers cheaper than concrete?',
+            'Pavers usually cost more up front than a poured concrete slab, but they resist cracking, are easy to '
+            'repair, and many people prefer the look.'],
+           ['How much base do I need under pavers?',
+            'Plan on about 4 to 6 inches of compacted crushed stone plus an inch of bedding sand. The paver base '
+            'calculator gives you the cubic yards of each.'],
+           ['Can I lay pavers myself?',
+            'Yes, on a small flat area. The key is a deep, well-compacted base and a level bedding layer. Rushing '
+            'the base is the most common mistake.']]},
+ {'slug': 'asphalt-driveway-cost',
+  'calc_slug': 'asphalt',
+  'calc_name': 'Asphalt',
+  'eyebrow': 'Cost guide · Aggregates',
+  'name': 'Asphalt Driveway Cost',
+  'griddesc': 'What an asphalt driveway costs',
+  'title': 'Asphalt Driveway Cost: Price Per Square Foot',
+  'desc': 'What does an asphalt driveway cost? Prices per square foot and per ton, new versus resurfacing, and '
+          'how to estimate the tons of hot mix you need.',
+  'h1': 'How Much Does an Asphalt Driveway Cost?',
+  'lede': 'Asphalt sits between gravel and concrete on price and gives a smooth, durable driveway. Here is what '
+          'it costs per square foot and per ton, plus how to estimate the tonnage.',
+  'glance_label': 'New installed driveway',
+  'glance_range': '$3 to $7 per sq ft',
+  'glance_note': 'A typical residential driveway runs about $2,000 to $6,000 installed. Resurfacing an existing '
+                 'base costs less; a full new build over fresh stone costs more. Hot mix is roughly $100 to $200 '
+                 'per ton.',
+  'intro': ['An asphalt driveway is priced by the square foot installed, or by the ton for the hot mix itself. '
+            'The finished price includes the stone base, the asphalt, and the paving crew.',
+            'New asphalt driveways commonly run 3 to 7 dollars per square foot. Resurfacing over a sound existing '
+            'base is cheaper, while a full excavation and new base is at the top of the range.'],
+  'breakdown_intro': 'The main cost pieces for an asphalt driveway:',
+  'breakdown_table': [['Item', 'Typical range', 'Notes'],
+                      ['Hot-mix asphalt', '$100 to $200 per ton', 'Material, before labor'],
+                      ['Installed, new (pro)', '$3 to $7 per sq ft', 'Base plus paving'],
+                      ['Resurfacing / overlay', '$2 to $4 per sq ft', 'Over a sound base'],
+                      ['Stone base', '$1 to $2 per sq ft', 'Compacted sub-base'],
+                      ['Sealcoating', '$0.15 to $0.25 per sq ft', 'Every few years'],
+                      ['Old surface removal', 'adds to the total', 'If replacing']],
+  'factors': ['Size and thickness set the tonnage. A thicker mat and a larger driveway both use more hot mix, '
+              'which is sold by the ton.',
+              'New build or overlay makes a big difference. Paving over a sound existing surface skips excavation '
+              'and base work; a full rebuild does not.',
+              'The base is critical and costs money. Asphalt needs a compacted stone base to last, and weak soil '
+              'means more excavation and stone.',
+              'Oil-based material prices swing with the market, so asphalt quotes move more over time than most '
+              'materials.',
+              'Access, slope, and region all affect crew time and the final number.'],
+  'diy_title': 'DIY or hire a pro?',
+  'diy': ['Asphalt is not a typical do-it-yourself material. Hot mix arrives very hot and has to be spread and '
+          'compacted quickly with the right equipment, so almost all asphalt driveways are installed by a paving '
+          'crew.',
+          'Where you can save is upkeep. Sealcoating and filling small cracks yourself every few years extends '
+          'the life of the driveway and is well within DIY range.'],
+  'faqs': [['How much does an asphalt driveway cost?',
+            'Usually 3 to 7 dollars per square foot for a new driveway installed, or roughly 2,000 to 6,000 '
+            'dollars for an average residential driveway.'],
+           ['How much is asphalt per ton?',
+            'Hot-mix asphalt is roughly 100 to 200 dollars per ton for the material, before base work and labor. '
+            'The price tracks oil markets.'],
+           ['Is asphalt cheaper than concrete?',
+            'Usually yes. Asphalt typically costs less than a concrete driveway up front, though it needs '
+            'sealcoating and has a shorter lifespan.'],
+           ['How much asphalt do I need?',
+            'Multiply area by thickness for the volume, then convert to tons using the mix density. The asphalt '
+            'calculator gives you the tonnage with waste included.']]},
+ {'slug': 'topsoil-cost',
+  'calc_slug': 'topsoil',
+  'calc_name': 'Topsoil',
+  'eyebrow': 'Cost guide · Soil',
+  'name': 'Topsoil Cost',
+  'griddesc': 'What topsoil costs by the yard',
+  'title': 'Topsoil Cost: Price Per Yard and Per Bag',
+  'desc': 'What does topsoil cost? Bulk prices per cubic yard, bagged prices, delivery, and how to estimate how '
+          'much topsoil your project needs.',
+  'h1': 'How Much Does Topsoil Cost?',
+  'lede': 'Topsoil is cheap in bulk and pricier by the bag. Here is what a cubic yard costs delivered, when bags '
+          'make sense, and how to estimate the amount you need.',
+  'glance_label': 'Bulk screened topsoil',
+  'glance_range': '$12 to $55 per cubic yard',
+  'glance_note': 'Plus delivery of about $50 to $150 per load. Premium and compost-blended soils cost more. '
+                 'Bagged topsoil is convenient but far more expensive per yard.',
+  'intro': ['Topsoil is sold in bulk by the cubic yard and in bags for small jobs. Bulk is far cheaper per yard '
+            'once you add up bag prices, but bags are easier to handle for a small bed.',
+            'Screened bulk topsoil commonly runs 12 to 55 dollars per cubic yard before delivery, with premium '
+            'and compost-amended blends higher. Delivery is usually a flat charge per load.'],
+  'breakdown_intro': 'The main cost pieces for topsoil:',
+  'breakdown_table': [['Item', 'Typical range', 'Notes'],
+                      ['Bulk fill dirt', '$5 to $20 per yd³', 'Unscreened, for filling'],
+                      ['Bulk screened topsoil', '$12 to $55 per yd³', 'Common for lawns and beds'],
+                      ['Premium / compost blend', '$30 to $70 per yd³', 'Amended garden soil'],
+                      ['Bagged topsoil', '$2 to $5 per bag', 'About 0.75 ft³ each'],
+                      ['Delivery', '$50 to $150 per load', 'By distance and volume'],
+                      ['Spreading (pro)', 'adds labor', 'If you are not doing it']],
+  'factors': ['Quality is the main driver. Rough fill dirt is cheapest; screened topsoil costs more; amended '
+              'garden and compost blends cost the most.',
+              'Quantity changes the unit price. Bulk by the yard is much cheaper than bags once you need more '
+              'than a few bags.',
+              'Delivery is often a flat fee, so small orders cost a lot per yard once hauling is included.',
+              'Region and season shift prices, and demand peaks in spring when everyone is planting.'],
+  'diy_title': 'Bulk or bags?',
+  'diy': ['For anything larger than a small bed, bulk delivery wins on price. You order the cubic yards, have '
+          'them dumped, and move the soil with a wheelbarrow.',
+          'Bags make sense only for small top-ups where you want no delivery fee and easy handling. It takes '
+          'about 36 of the 0.75 cubic foot bags to equal one bulk cubic yard.'],
+  'faqs': [['How much does a yard of topsoil cost?',
+            'Bulk screened topsoil is roughly 12 to 55 dollars per cubic yard before delivery. Fill dirt is '
+            'cheaper; amended garden blends cost more.'],
+           ['How much does bagged topsoil cost?',
+            'About 2 to 5 dollars for a bag holding roughly 0.75 cubic feet, which works out far more expensive '
+            'per yard than bulk.'],
+           ['How many bags in a cubic yard?',
+            'About 36 of the common 0.75 cubic foot bags. That is why bulk delivery wins for larger jobs.'],
+           ['How much topsoil do I need?',
+            'Multiply length by width by depth, then convert to cubic yards. The topsoil calculator also gives '
+            'tons and bag counts.']]},
+ {'slug': 'mulch-cost',
+  'calc_slug': 'mulch',
+  'calc_name': 'Mulch',
+  'eyebrow': 'Cost guide · Garden',
+  'name': 'Mulch Cost',
+  'griddesc': 'What mulch costs by the yard',
+  'title': 'Mulch Cost: Price Per Yard and Per Bag',
+  'desc': 'What does mulch cost? Bulk prices per cubic yard, bagged prices, dyed and premium options, and how to '
+          'estimate how much mulch your beds need.',
+  'h1': 'How Much Does Mulch Cost?',
+  'lede': 'Mulch is inexpensive in bulk and handy by the bag. Here is what a cubic yard costs, how dyed and '
+          'premium types compare, and how to estimate your beds.',
+  'glance_label': 'Bulk hardwood mulch',
+  'glance_range': '$20 to $50 per cubic yard',
+  'glance_note': 'Plus delivery of about $50 to $150 per load. Dyed, cedar, and premium mulches cost more. Bagged '
+                 'mulch runs about $2 to $5 for a 2 cubic foot bag.',
+  'intro': ['Mulch is sold in bulk by the cubic yard and in 2 cubic foot bags. Bulk is cheaper per yard, while '
+            'bags are easy to carry and store for small beds.',
+            'Standard bulk hardwood mulch commonly runs 20 to 50 dollars per cubic yard before delivery, with '
+            'dyed and premium types higher. One cubic yard equals about 13.5 bags.'],
+  'breakdown_intro': 'The main cost pieces for mulch:',
+  'breakdown_table': [['Item', 'Typical range', 'Notes'],
+                      ['Bulk hardwood', '$20 to $50 per yd³', 'Standard shredded bark'],
+                      ['Bulk dyed / premium', '$30 to $60 per yd³', 'Colored, cedar, or fine'],
+                      ['Bagged mulch', '$2 to $5 per bag', '2 ft³ per bag'],
+                      ['Delivery', '$50 to $150 per load', 'By distance and volume'],
+                      ['Spreading (pro)', 'adds labor', 'If you are not doing it'],
+                      ['DIY, material only', 'just the mulch', 'You spread it']],
+  'factors': ['Type sets the price. Plain hardwood is cheapest; dyed, cedar, and finely shredded mulches cost '
+              'more, and rubber mulch is a separate premium category.',
+              'Quantity changes the unit price. Bulk beats bags once you need more than about ten bags.',
+              'Delivery is usually a flat fee per load, so small bulk orders carry a high per-yard hauling cost.',
+              'Color and quality vary by supplier, and prices rise in spring planting season.'],
+  'diy_title': 'Bulk or bags?',
+  'diy': ['Spreading mulch is easy do-it-yourself work. For larger beds, bulk delivery is much cheaper and you '
+          'move it with a wheelbarrow and rake.',
+          'Bags are convenient for small beds and let you buy only what you need with no delivery fee. The '
+          'crossover to bulk is around ten bags.'],
+  'faqs': [['How much does a yard of mulch cost?',
+            'Bulk hardwood mulch is roughly 20 to 50 dollars per cubic yard before delivery. Dyed and premium '
+            'types cost more.'],
+           ['How much does a bag of mulch cost?',
+            'About 2 to 5 dollars for a standard 2 cubic foot bag. Bulk is cheaper per yard once you need more '
+            'than about ten bags.'],
+           ['How many bags of mulch in a yard?',
+            'About 13.5 of the standard 2 cubic foot bags make one cubic yard.'],
+           ['How much mulch do I need?',
+            'Multiply bed length by width by depth, then convert to cubic yards. The mulch calculator also gives '
+            'the bag count.']]}]
 
 GUIDE_FOR = {g["calc_slug"]: g for g in GUIDES}
 
